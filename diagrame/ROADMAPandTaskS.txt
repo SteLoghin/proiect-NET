@@ -1,0 +1,23 @@
+usecases: 
+- proprietar vrea sa vada pretul mediu pentru anumite zone pentru a pune in vanzare/chirie apratament/garsonerie/casa
+- Cumparator vrea sa caute apartamente intr-o zona selectata
+
+
+microservicii:
+- Web Data Indexing API
+- Machine Learning Model API
+
+
+ROADMAP:
+
+Ne apucam de:
+-DB Design
+-UI/UX Design
+-Pentru fiecare componenta, expunem un API Dummy
+-Stabilim modul de comunicare intre componente RESTful API
+-Facem modelul cu ML.net si in caz de nu iese schimbam pe Python-Django-Tensorflow
+-Lucram la crawler
+-Finisam fiecare componenta
+
+Cerinta importanta: 5000 de conectari
+
