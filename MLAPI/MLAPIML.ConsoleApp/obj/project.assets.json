@@ -5504,11 +5504,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\damia\\Desktop\\NET\\proiect\\proiect-NET\\MLAPI\\MLAPIML.ConsoleApp\\MLAPIML.ConsoleApp.csproj",
+      "projectUniqueName": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.ConsoleApp\\MLAPIML.ConsoleApp.csproj",
       "projectName": "MLAPIML.ConsoleApp",
-      "projectPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\proiect-NET\\MLAPI\\MLAPIML.ConsoleApp\\MLAPIML.ConsoleApp.csproj",
+      "projectPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.ConsoleApp\\MLAPIML.ConsoleApp.csproj",
       "packagesPath": "C:\\Users\\damia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\proiect-NET\\MLAPI\\MLAPIML.ConsoleApp\\obj\\",
+      "outputPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.ConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5526,9 +5526,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\damia\\Desktop\\NET\\proiect\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj": {
-              "projectPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj"
+            "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj": {
+              "projectPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj"
             }
           }
         }
@@ -5541,6 +5542,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.ML": {
             "target": "Package",
@@ -5566,7 +5568,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

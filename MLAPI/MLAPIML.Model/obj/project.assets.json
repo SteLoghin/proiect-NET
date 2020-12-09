@@ -3641,11 +3641,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\damia\\Desktop\\NET\\proiect\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj",
+      "projectUniqueName": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj",
       "projectName": "MLAPIML.Model",
-      "projectPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj",
+      "projectPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj",
       "packagesPath": "C:\\Users\\damia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\proiect-NET\\MLAPI\\MLAPIML.Model\\obj\\",
+      "outputPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3663,6 +3663,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "projectReferences": {}
         }
       },
@@ -3674,6 +3675,7 @@
     },
     "frameworks": {
       "netstandard2.0": {
+        "targetAlias": "netstandard2.0",
         "dependencies": {
           "Microsoft.ML": {
             "target": "Package",
@@ -3700,7 +3702,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

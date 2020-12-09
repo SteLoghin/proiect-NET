@@ -12,85 +12,13 @@ namespace MLAPIML.ConsoleApp
             // Create single instance of sample data from first line of dataset for model input
             ModelInput sampleData = new ModelInput()
             {
-                Id = 1F,
-                MSSubClass = 60F,
-                MSZoning = @"RL",
-                LotFrontage = 65F,
                 LotArea = 8450F,
-                Street = @"Pave",
-                Alley = @"NA",
-                LotShape = @"Reg",
-                LandContour = @"Lvl",
-                Utilities = @"AllPub",
                 LotConfig = @"Inside",
-                LandSlope = @"Gtl",
-                Neighborhood = @"CollgCr",
-                Condition1 = @"Norm",
-                Condition2 = @"Norm",
-                BldgType = @"1Fam",
-                HouseStyle = @"2Story",
-                OverallQual = 7F,
+                Zone = @"CollgCr",
+                Floors = @"2Story",
                 OverallCond = 5F,
                 YearBuilt = 2003F,
-                YearRemodAdd = 2003F,
-                RoofStyle = @"Gable",
-                RoofMatl = @"CompShg",
-                Exterior1st = @"VinylSd",
-                Exterior2nd = @"VinylSd",
-                MasVnrType = @"BrkFace",
-                MasVnrArea = 196F,
-                ExterQual = @"Gd",
-                ExterCond = @"TA",
-                Foundation = @"PConc",
-                BsmtQual = @"Gd",
-                BsmtCond = @"TA",
-                BsmtExposure = @"No",
-                BsmtFinType1 = @"GLQ",
-                BsmtFinSF1 = 706F,
-                BsmtFinType2 = @"Unf",
-                BsmtFinSF2 = 0F,
-                BsmtUnfSF = 150F,
-                TotalBsmtSF = 856F,
-                Heating = @"GasA",
-                HeatingQC = @"Ex",
-                CentralAir = @"Y",
-                Electrical = @"SBrkr",
-                _1stFlrSF = 856F,
-                _2ndFlrSF = 854F,
-                LowQualFinSF = 0F,
-                GrLivArea = 1710F,
-                BsmtFullBath = @"1",
-                BsmtHalfBath = @"0",
-                FullBath = 2F,
-                HalfBath = @"1",
-                BedroomAbvGr = 3F,
-                KitchenAbvGr = 1F,
-                KitchenQual = @"Gd",
-                TotRmsAbvGrd = 8F,
-                Functional = @"Typ",
-                Fireplaces = 0F,
-                FireplaceQu = @"NA",
-                GarageType = @"Attchd",
-                GarageYrBlt = 2003F,
-                GarageFinish = @"RFn",
-                GarageCars = 2F,
-                GarageArea = 548F,
-                GarageQual = @"TA",
-                GarageCond = @"TA",
-                PavedDrive = @"Y",
-                WoodDeckSF = 0F,
-                OpenPorchSF = 61F,
-                EnclosedPorch = 0F,
-                _3SsnPorch = 0F,
-                ScreenPorch = 0F,
-                PoolArea = 0F,
-                PoolQC = @"NA",
-                Fence = @"NA",
-                MiscFeature = @"NA",
-                MiscVal = 0F,
-                MoSold = 2F,
-                YrSold = 2008F,
-                SaleType = @"WD",
+                Rooms = 8F,
                 SaleCondition = @"Normal",
             };
 
@@ -98,85 +26,13 @@ namespace MLAPIML.ConsoleApp
             var predictionResult = ConsumeModel.Predict(sampleData);
 
             Console.WriteLine("Using model to make single prediction -- Comparing actual SalePrice with predicted SalePrice from sample data...\n\n");
-            Console.WriteLine($"Id: {sampleData.Id}");
-            Console.WriteLine($"MSSubClass: {sampleData.MSSubClass}");
-            Console.WriteLine($"MSZoning: {sampleData.MSZoning}");
-            Console.WriteLine($"LotFrontage: {sampleData.LotFrontage}");
             Console.WriteLine($"LotArea: {sampleData.LotArea}");
-            Console.WriteLine($"Street: {sampleData.Street}");
-            Console.WriteLine($"Alley: {sampleData.Alley}");
-            Console.WriteLine($"LotShape: {sampleData.LotShape}");
-            Console.WriteLine($"LandContour: {sampleData.LandContour}");
-            Console.WriteLine($"Utilities: {sampleData.Utilities}");
             Console.WriteLine($"LotConfig: {sampleData.LotConfig}");
-            Console.WriteLine($"LandSlope: {sampleData.LandSlope}");
-            Console.WriteLine($"Neighborhood: {sampleData.Neighborhood}");
-            Console.WriteLine($"Condition1: {sampleData.Condition1}");
-            Console.WriteLine($"Condition2: {sampleData.Condition2}");
-            Console.WriteLine($"BldgType: {sampleData.BldgType}");
-            Console.WriteLine($"HouseStyle: {sampleData.HouseStyle}");
-            Console.WriteLine($"OverallQual: {sampleData.OverallQual}");
+            Console.WriteLine($"Zone: {sampleData.Zone}");
+            Console.WriteLine($"Floors: {sampleData.Floors}");
             Console.WriteLine($"OverallCond: {sampleData.OverallCond}");
             Console.WriteLine($"YearBuilt: {sampleData.YearBuilt}");
-            Console.WriteLine($"YearRemodAdd: {sampleData.YearRemodAdd}");
-            Console.WriteLine($"RoofStyle: {sampleData.RoofStyle}");
-            Console.WriteLine($"RoofMatl: {sampleData.RoofMatl}");
-            Console.WriteLine($"Exterior1st: {sampleData.Exterior1st}");
-            Console.WriteLine($"Exterior2nd: {sampleData.Exterior2nd}");
-            Console.WriteLine($"MasVnrType: {sampleData.MasVnrType}");
-            Console.WriteLine($"MasVnrArea: {sampleData.MasVnrArea}");
-            Console.WriteLine($"ExterQual: {sampleData.ExterQual}");
-            Console.WriteLine($"ExterCond: {sampleData.ExterCond}");
-            Console.WriteLine($"Foundation: {sampleData.Foundation}");
-            Console.WriteLine($"BsmtQual: {sampleData.BsmtQual}");
-            Console.WriteLine($"BsmtCond: {sampleData.BsmtCond}");
-            Console.WriteLine($"BsmtExposure: {sampleData.BsmtExposure}");
-            Console.WriteLine($"BsmtFinType1: {sampleData.BsmtFinType1}");
-            Console.WriteLine($"BsmtFinSF1: {sampleData.BsmtFinSF1}");
-            Console.WriteLine($"BsmtFinType2: {sampleData.BsmtFinType2}");
-            Console.WriteLine($"BsmtFinSF2: {sampleData.BsmtFinSF2}");
-            Console.WriteLine($"BsmtUnfSF: {sampleData.BsmtUnfSF}");
-            Console.WriteLine($"TotalBsmtSF: {sampleData.TotalBsmtSF}");
-            Console.WriteLine($"Heating: {sampleData.Heating}");
-            Console.WriteLine($"HeatingQC: {sampleData.HeatingQC}");
-            Console.WriteLine($"CentralAir: {sampleData.CentralAir}");
-            Console.WriteLine($"Electrical: {sampleData.Electrical}");
-            Console.WriteLine($"_1stFlrSF: {sampleData._1stFlrSF}");
-            Console.WriteLine($"_2ndFlrSF: {sampleData._2ndFlrSF}");
-            Console.WriteLine($"LowQualFinSF: {sampleData.LowQualFinSF}");
-            Console.WriteLine($"GrLivArea: {sampleData.GrLivArea}");
-            Console.WriteLine($"BsmtFullBath: {sampleData.BsmtFullBath}");
-            Console.WriteLine($"BsmtHalfBath: {sampleData.BsmtHalfBath}");
-            Console.WriteLine($"FullBath: {sampleData.FullBath}");
-            Console.WriteLine($"HalfBath: {sampleData.HalfBath}");
-            Console.WriteLine($"BedroomAbvGr: {sampleData.BedroomAbvGr}");
-            Console.WriteLine($"KitchenAbvGr: {sampleData.KitchenAbvGr}");
-            Console.WriteLine($"KitchenQual: {sampleData.KitchenQual}");
-            Console.WriteLine($"TotRmsAbvGrd: {sampleData.TotRmsAbvGrd}");
-            Console.WriteLine($"Functional: {sampleData.Functional}");
-            Console.WriteLine($"Fireplaces: {sampleData.Fireplaces}");
-            Console.WriteLine($"FireplaceQu: {sampleData.FireplaceQu}");
-            Console.WriteLine($"GarageType: {sampleData.GarageType}");
-            Console.WriteLine($"GarageYrBlt: {sampleData.GarageYrBlt}");
-            Console.WriteLine($"GarageFinish: {sampleData.GarageFinish}");
-            Console.WriteLine($"GarageCars: {sampleData.GarageCars}");
-            Console.WriteLine($"GarageArea: {sampleData.GarageArea}");
-            Console.WriteLine($"GarageQual: {sampleData.GarageQual}");
-            Console.WriteLine($"GarageCond: {sampleData.GarageCond}");
-            Console.WriteLine($"PavedDrive: {sampleData.PavedDrive}");
-            Console.WriteLine($"WoodDeckSF: {sampleData.WoodDeckSF}");
-            Console.WriteLine($"OpenPorchSF: {sampleData.OpenPorchSF}");
-            Console.WriteLine($"EnclosedPorch: {sampleData.EnclosedPorch}");
-            Console.WriteLine($"_3SsnPorch: {sampleData._3SsnPorch}");
-            Console.WriteLine($"ScreenPorch: {sampleData.ScreenPorch}");
-            Console.WriteLine($"PoolArea: {sampleData.PoolArea}");
-            Console.WriteLine($"PoolQC: {sampleData.PoolQC}");
-            Console.WriteLine($"Fence: {sampleData.Fence}");
-            Console.WriteLine($"MiscFeature: {sampleData.MiscFeature}");
-            Console.WriteLine($"MiscVal: {sampleData.MiscVal}");
-            Console.WriteLine($"MoSold: {sampleData.MoSold}");
-            Console.WriteLine($"YrSold: {sampleData.YrSold}");
-            Console.WriteLine($"SaleType: {sampleData.SaleType}");
+            Console.WriteLine($"Rooms: {sampleData.Rooms}");
             Console.WriteLine($"SaleCondition: {sampleData.SaleCondition}");
             Console.WriteLine($"\n\nPredicted SalePrice: {predictionResult.Score}\n\n");
             Console.WriteLine("=============== End of process, hit any key to finish ===============");
