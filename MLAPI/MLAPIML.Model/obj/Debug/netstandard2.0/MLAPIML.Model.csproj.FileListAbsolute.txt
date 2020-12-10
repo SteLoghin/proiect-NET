@@ -1,0 +1,10 @@
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\bin\Debug\netstandard2.0\MLModel.zip
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\bin\Debug\netstandard2.0\MLAPIML.Model.deps.json
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\bin\Debug\netstandard2.0\MLAPIML.Model.dll
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\bin\Debug\netstandard2.0\MLAPIML.Model.pdb
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\obj\Debug\netstandard2.0\MLAPIML.Model.csprojAssemblyReference.cache
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\obj\Debug\netstandard2.0\MLAPIML.Model.AssemblyInfoInputs.cache
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\obj\Debug\netstandard2.0\MLAPIML.Model.AssemblyInfo.cs
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\obj\Debug\netstandard2.0\MLAPIML.Model.csproj.CoreCompileInputs.cache
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\obj\Debug\netstandard2.0\MLAPIML.Model.dll
+D:\Cursuri-Seminarii\Anul 3 Tutuianu Razvan\Semestrul 1\.NET\proiect-NET\MLAPI\MLAPIML.Model\obj\Debug\netstandard2.0\MLAPIML.Model.pdb
