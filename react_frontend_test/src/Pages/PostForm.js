@@ -25,7 +25,8 @@ class PostForm extends Component {
 		e.preventDefault()
 		console.log(this.state)
 		axios
-			.post('http://localhost:5000/api/v1/predictions', this.state)
+			//.post('http://localhost:5000/api/v1/predictions', this.state)
+			.post('http://dotnethouse.azurewebsites.net/api/v1/predictions', this.state)
 			.then(response => {
 				console.log(response)
 				const data=JSON.parse(JSON.stringify(response))
