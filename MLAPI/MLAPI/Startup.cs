@@ -11,6 +11,7 @@ namespace MLAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = @"_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,6 +30,13 @@ namespace MLAPI
             });
             services.AddPredictionEnginePool<PropertyData, PropertyPrediction>()
                         .FromFile(modelName: "PropertyPriceModel", filePath: "MLModels/price_prediction_model.zip", watchForChanges: true);
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins, builder =>
+                {
+                    builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +48,8 @@ namespace MLAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MLAPI v1"));
             }
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseRouting();
 
