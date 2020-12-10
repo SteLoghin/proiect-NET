@@ -1,10 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import PostForm from './Components/PostForm';
-import Endpoint2Page from './Components/Endpoint2Page';
-import Endpoint3Page from './Components/Endpoint3Page';
-import MainNavigation from './Components/MainNavigation';
+import PostForm from './Pages/PostForm';
+import Endpoint2Page from './Pages/Endpoint2Page';
+import Endpoint3Page from './Pages/Endpoint3Page';
+import MainNavigation from './Pages/MainNavigation';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 

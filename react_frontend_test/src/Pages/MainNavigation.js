@@ -11,6 +11,7 @@ const MainNavigation = props => {
             <nav className="main-navigation__item">
                 <ul>
                     <React.Fragment>
+                        <li><NavLink to="/home">Home</NavLink></li>
                         <li><NavLink to="/price-prediction">Price Prediction Form</NavLink></li>
                         <li><NavLink to="/endpoint2">TestEndpoint2</NavLink></li>
                         <li><NavLink to="/endpoint3">TestEndpoint3</NavLink></li>
