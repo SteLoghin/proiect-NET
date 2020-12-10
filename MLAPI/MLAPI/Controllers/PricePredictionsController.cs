@@ -8,12 +8,12 @@ namespace MLAPI.Controllers
 {
     [Route("api/v1/predictions")]
     [ApiController]
-    public class PropertiesController : ControllerBase
+    public class PricePredictionsController : ControllerBase
     {
-        private readonly PredictionEnginePool<PropertyData, PropertyPrediction> _predictionEnginePool;
-        public PropertiesController(PredictionEnginePool<PropertyData, PropertyPrediction> predictionEnginePool)
+        private readonly PredictionEnginePool<PropertyData, PropertyPrediction> predictionEnginePool;
+        public PricePredictionsController(PredictionEnginePool<PropertyData, PropertyPrediction> predictionEnginePool)
         {
-            _predictionEnginePool = predictionEnginePool;
+            this.predictionEnginePool = predictionEnginePool;
         }
 
         [HttpPost]
@@ -24,7 +24,7 @@ namespace MLAPI.Controllers
                 return BadRequest();
             }
 
-            PropertyPrediction predictedValue = _predictionEnginePool.Predict(modelName: "PropertyPriceModel", example: data);
+            PropertyPrediction predictedValue = this.predictionEnginePool.Predict(modelName: "PropertyPriceModel", example: data);
             double price = Convert.ToDouble(predictedValue.SalePrice);
 
             return Ok(price);

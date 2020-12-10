@@ -3,7 +3,7 @@ using MLAPI.Data;
 
 namespace MLAPI.DataModels
 {
-    public class PropertyData : BaseEntity
+    public class PropertyData
     {
         [ColumnName("LotArea"), LoadColumn(0)]
         public float LotArea { get; set; }

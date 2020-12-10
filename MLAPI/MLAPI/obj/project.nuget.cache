@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "eEayHZitdgvus2cDcs6lJd8m5L/isgRJrxVVovjW6vVSf+R7eoh22d0SeKeZmMyJ6fq8hCV6nJXFB7LT1ZcKDA==",
+  "dgSpecHash": "gQ8Tljc8cNZmxLQIdcwNOqx+G8EtjH935/1rKNHeJijKmJs1wEBXOtHjCj49miTu//SqqwyJY3+qXEmw8C/yxw==",
   "success": true,
   "projectFilePath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\damia\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
+    "C:\\Users\\damia\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.0\\microsoft.aspnetcore.authentication.jwtbearer.5.0.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\5.0.0\\microsoft.aspnetcore.authentication.openidconnect.5.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

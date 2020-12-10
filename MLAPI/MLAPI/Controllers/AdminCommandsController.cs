@@ -1,26 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using MLAPI.Data;
 using MLAPI.DataModels;
+using MLAPI.DTOs;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MLAPI.Controllers
 {
     [Route("api/v1/admin")]
     [ApiController]
-    public class AdminController : ControllerBase
+    public class AdminCommandsController : ControllerBase
     {
-        private readonly IRepository<PropertyData> repo;
+        private readonly IMediator mediator;
 
-        public AdminController(IRepository<PropertyData> repo)
+        public AdminCommandsController(IMediator mediator)
         {
-            this.repo = repo;
+            this.mediator = mediator;
         }
 
         [HttpGet]
         [Route("properties")]
-        public ActionResult<IEnumerable<PropertyData>> Get()
+        public ActionResult<IEnumerable<Property>> Get()
         {
             return null;
+        }
+
+        [HttpPost]
+        [Route("properties")]
+        public async Task<ActionResult<Property>> Create([FromBody] CreateProperty request)
+        {
+            var property = await mediator.Send(request);
+            return property;
         }
 
         [HttpPost]
