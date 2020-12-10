@@ -1,0 +1,8 @@
+.dataForm{
+    display:flex;
+    justify-content: center;
+}
+
+.dataForm form{
+    text-align: center;
+}

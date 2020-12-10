@@ -1,0 +1,39 @@
+.main-navigation{
+    display:flex;
+    justify-content: space-between;
+    background-color: #4BB2C6;
+    height:100%;
+    width:100%;
+    /* border:2px solid red; */
+}
+
+.main-navigation__item ul{
+    display:flex;
+    flex-direction: row;
+    list-style: none;
+    text-decoration: none;
+}
+
+.main-navigation__item ul li{
+    padding: 10px;
+}
+
+.main-navigation__item ul li a{
+    text-decoration: none;
+    color:white;
+    letter-spacing: 0.9px;
+    font-size: 12px;
+}
+
+.main-navigation__logo{
+    color:white;
+    letter-spacing: 0.9px;
+    font-size: 12px;
+    margin-left: 1.5vw;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
