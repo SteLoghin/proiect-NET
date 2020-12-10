@@ -5,9 +5,15 @@ class PostForm extends Component {
 		super(props)
 
 		this.state = {
-			userId: '',
-			title: '',
-			body: ''
+			lotArea:0,
+			lotConfig:'',
+			zone:'',
+			floors:'',
+			overallCond:0,
+			yearBuilt:0,
+			rooms:0,
+			saleCondition:'',
+			salePrice:0
 		}
 	}
 
@@ -19,9 +25,12 @@ class PostForm extends Component {
 		e.preventDefault()
 		console.log(this.state)
 		axios
-			.post('https://jsonplaceholder.typicode.com/posts', this.state)
+			.post('http://localhost:5000/api/v1/predictions', this.state)
 			.then(response => {
 				console.log(response)
+				const data=JSON.parse(JSON.stringify(response))
+				console.log(data)
+				document.getElementById("raspuns").innerHTML="Estimated price is: "+ data.data;
 			})
 			.catch(error => {
 				console.log(error)
@@ -29,39 +38,94 @@ class PostForm extends Component {
 	}
 
 	render() {
-		const { userId, title, body } = this.state
+		const { lotArea,lotConfig,zone,floors,overallCond,yearBuilt,rooms,saleCondition,salePrice } = this.state
 		return (
 			<div>
 				<form onSubmit={this.submitHandler}>
 					<div>
 						<input
-							type="text"
-                            name="userId"
-                            placeholder="userId"
-							value={userId}
+							type="number"
+                            name="lotArea"
+                            placeholder="lotArea"
+							value={lotArea}
 							onChange={this.changeHandler}
 						/>
 					</div>
 					<div>
 						<input
 							type="text"
-                            name="title"
-                            placeholder="title"
-							value={title}
+                            name="lotConfig"
+                            placeholder="lotConfig"
+							value={lotConfig}
 							onChange={this.changeHandler}
 						/>
 					</div>
 					<div>
 						<input
 							type="text"
-                            name="body"
-                            placeholder="body"
-							value={body}
+                            name="zone"
+                            placeholder="zone"
+							value={zone}
 							onChange={this.changeHandler}
 						/>
 					</div>
-					<button type="submit">Submit</button>
+					<div>
+						<input
+							type="text"
+                            name="floors"
+                            placeholder="floors"
+							value={floors}
+							onChange={this.changeHandler}
+						/>
+					</div>
+					<div>
+						<input
+							type="number"
+                            name="overallCond"
+                            placeholder="overallCond"
+							value={overallCond}
+							onChange={this.changeHandler}
+						/>
+					</div>
+					<div>
+						<input
+							type="number"
+                            name="yearBuilt"
+                            placeholder="yearBuilt"
+							value={yearBuilt}
+							onChange={this.changeHandler}
+						/>
+					</div>
+					<div>
+						<input
+							type="number"
+                            name="rooms"
+                            placeholder="rooms"
+							value={rooms}
+							onChange={this.changeHandler}
+						/>
+					</div>
+					<div>
+						<input
+							type="text"
+                            name="saleCondition"
+                            placeholder="saleCondition"
+							value={saleCondition}
+							onChange={this.changeHandler}
+						/>
+					</div>
+					<div>
+						<input
+							type="number"
+                            name="salePrice"
+                            placeholder="salePrice"
+							value={salePrice}
+							onChange={this.changeHandler}
+						/>
+					</div>
+					<button type="submit">Predict</button>
 				</form>
+				<p id="raspuns"></p>
 			</div>
 		)
 	}
