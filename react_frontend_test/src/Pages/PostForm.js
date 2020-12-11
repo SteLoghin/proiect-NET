@@ -14,7 +14,7 @@ class PostForm extends Component {
 			yearBuilt:0,
 			rooms:0,
 			saleCondition:'',
-			salePrice:0
+			
 		}
 	}
 
@@ -40,7 +40,7 @@ class PostForm extends Component {
 	}
 
 	render() {
-		const { lotArea,lotConfig,zone,floors,overallCond,yearBuilt,rooms,saleCondition,salePrice } = this.state
+		const { lotArea,lotConfig,zone,floors,overallCond,yearBuilt,rooms,saleCondition} = this.state
 		return (
 			<div className="dataForm">
 				<form onSubmit={this.submitHandler}>
@@ -125,16 +125,6 @@ class PostForm extends Component {
                             name="saleCondition"
                             id="saleCondition"
 							value={saleCondition}
-							onChange={this.changeHandler}
-						/>
-					</div>
-					<div>
-					<label for="salePrice">Sale Price</label><br />
-						<input
-							type="number"
-                            name="salePrice"
-                            id="salePrice"
-							value={salePrice}
 							onChange={this.changeHandler}
 						/>
 					</div>
