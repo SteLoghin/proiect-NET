@@ -7,12 +7,13 @@ using System.Linq;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using MLAPIML.Model;
+using Microsoft.ML.Trainers.FastTree;
 
 namespace MLAPIML.ConsoleApp
 {
     public static class ModelBuilder
     {
-        private static string TRAIN_DATA_FILEPATH = @"C:\Users\damia\Desktop\NET\proiect\ml\proiect-NET\MLAPI\MLAPI\train2.csv";
+        private static string TRAIN_DATA_FILEPATH = @"C:\Users\damia\Desktop\NET\proiect\ml\proiect-NET\MLAPI\MLAPI\data_train.csv";
         private static string MODEL_FILE = ConsumeModel.MLNetModelPath;
 
         // Create MLContext to be shared across the model creation workflow objects 
@@ -45,12 +46,11 @@ namespace MLAPIML.ConsoleApp
         public static IEstimator<ITransformer> BuildTrainingPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations 
-            var dataProcessPipeline = mlContext.Transforms.Categorical.OneHotEncoding(new[] { new InputOutputColumnPair("LotConfig", "LotConfig"), new InputOutputColumnPair("Floors", "Floors"), new InputOutputColumnPair("SaleCondition", "SaleCondition") })
-                                      .Append(mlContext.Transforms.Categorical.OneHotHashEncoding(new[] { new InputOutputColumnPair("OverallCond", "OverallCond") }))
-                                      .Append(mlContext.Transforms.Text.FeaturizeText("Zone_tf", "Zone"))
-                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "LotConfig", "Floors", "SaleCondition", "OverallCond", "Zone_tf", "LotArea", "YearBuilt", "Rooms" }));
+            var dataProcessPipeline = mlContext.Transforms.Categorical.OneHotEncoding(new[] { new InputOutputColumnPair("Zone", "Zone"), new InputOutputColumnPair("Animal", "Animal"), new InputOutputColumnPair("Furnished", "Furnished") })
+                                      .Append(mlContext.Transforms.Categorical.OneHotHashEncoding(new[] { new InputOutputColumnPair("Rooms", "Rooms") }))
+                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Zone", "Animal", "Furnished", "Rooms", "Area", "Bathrooms", "ParkingLots", "Floor" }));
             // Set the training algorithm 
-            var trainer = mlContext.Regression.Trainers.FastTreeTweedie(labelColumnName: @"SalePrice", featureColumnName: "Features");
+            var trainer = mlContext.Regression.Trainers.FastTreeTweedie(new FastTreeTweedieTrainer.Options() { NumberOfLeaves = 19, MinimumExampleCountPerLeaf = 1, NumberOfTrees = 500, LearningRate = 0.1152344f, Shrinkage = 0.2125965f, LabelColumnName = @"Price", FeatureColumnName = "Features" });
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);
 
@@ -72,7 +72,7 @@ namespace MLAPIML.ConsoleApp
             // Cross-Validate with single dataset (since we don't have two datasets, one for training and for evaluate)
             // in order to evaluate and get the model's accuracy metrics
             Console.WriteLine("=============== Cross-validating to get model's accuracy metrics ===============");
-            var crossValidationResults = mlContext.Regression.CrossValidate(trainingDataView, trainingPipeline, numberOfFolds: 5, labelColumnName: "SalePrice");
+            var crossValidationResults = mlContext.Regression.CrossValidate(trainingDataView, trainingPipeline, numberOfFolds: 5, labelColumnName: "Price");
             PrintRegressionFoldsAverageMetrics(crossValidationResults);
         }
 

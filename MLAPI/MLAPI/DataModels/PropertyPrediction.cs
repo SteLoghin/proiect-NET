@@ -5,7 +5,7 @@ namespace MLAPI.DataModels
     public class PropertyPrediction
     {
         [ColumnName("Score")]
-        public float SalePrice { get; set; }
+        public float Price { get; set; }
 
     }
 }

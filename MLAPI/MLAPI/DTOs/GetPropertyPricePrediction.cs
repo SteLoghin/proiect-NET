@@ -1,9 +1,6 @@
-﻿using MediatR;
-using MLAPI.Data;
-
-namespace MLAPI.DTOs
+﻿namespace MLAPI.DTOs
 {
-    public class CreateProperty : IRequest<Property>
+    public class GetPropertyPricePrediction
     {
         public string Zone { get; set; }
 
@@ -20,7 +17,5 @@ namespace MLAPI.DTOs
         public string Animal { get; set; }
 
         public string Furnished { get; set; }
-
-        public float Price { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/H/Ba9B7690TCiYclXKEm1WzVPiSpKyk/RPl2dLegGu3Quxk/Xi05xIMgV2Ud+CzwYNVyy/YItgWvr088L+9xw==",
+  "dgSpecHash": "Bfg4qpSVjYrP2omIyV2iHclIOwZGk80tXdcrs791mh/JdCfbIH/zPsKDQnwb3C0KodzNsBamR6MQgADMqTeceg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.ConsoleApp\\MLAPIML.ConsoleApp.csproj",
+  "projectFilePath": "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.ConsoleApp\\MLAPIML.ConsoleApp.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.3.0\\microsoft.csharp.4.3.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml\\1.5.2\\microsoft.ml.1.5.2.nupkg.sha512",

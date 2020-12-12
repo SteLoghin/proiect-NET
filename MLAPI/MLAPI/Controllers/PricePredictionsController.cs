@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.ML;
 using MLAPI.DataModels;
+using MLAPI.DTOs;
 using System;
 using System.Collections.Generic;
 
@@ -16,16 +17,16 @@ namespace MLAPI.Controllers
             this.predictionEnginePool = predictionEnginePool;
         }
 
-        [HttpPost]
-        public ActionResult<double> Post([FromBody] PropertyData data)
+        [HttpGet]
+        public ActionResult<double> Get([FromQuery] PropertyData data)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest("Invalid property data");
             }
 
             PropertyPrediction predictedValue = this.predictionEnginePool.Predict(modelName: "PropertyPriceModel", example: data);
-            double price = Convert.ToDouble(predictedValue.SalePrice);
+            double price = Convert.ToDouble(predictedValue.Price);
 
             return Ok(price);
         }

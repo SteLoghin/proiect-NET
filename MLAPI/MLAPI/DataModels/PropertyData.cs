@@ -1,44 +1,44 @@
 ﻿using Microsoft.ML.Data;
-using MLAPI.Data;
 
 namespace MLAPI.DataModels
 {
     public class PropertyData
     {
-        [ColumnName("LotArea"), LoadColumn(0)]
-        public float LotArea { get; set; }
-
-
-        [ColumnName("LotConfig"), LoadColumn(1)]
-        public string LotConfig { get; set; }
-
-
-        [ColumnName("Zone"), LoadColumn(2)]
+        [ColumnName("Zone"), LoadColumn(0)]
         public string Zone { get; set; }
 
 
-        [ColumnName("Floors"), LoadColumn(3)]
-        public string Floors { get; set; }
+        [ColumnName("Area"), LoadColumn(1)]
+        public float Area { get; set; }
 
 
-        [ColumnName("OverallCond"), LoadColumn(4)]
-        public float OverallCond { get; set; }
-
-
-        [ColumnName("YearBuilt"), LoadColumn(5)]
-        public float YearBuilt { get; set; }
-
-
-        [ColumnName("Rooms"), LoadColumn(6)]
+        [ColumnName("Rooms"), LoadColumn(2)]
         public float Rooms { get; set; }
 
 
-        [ColumnName("SaleCondition"), LoadColumn(7)]
-        public string SaleCondition { get; set; }
+        [ColumnName("Bathrooms"), LoadColumn(3)]
+        public float Bathrooms { get; set; }
 
 
-        [ColumnName("SalePrice"), LoadColumn(8)]
-        public float SalePrice { get; set; }
+        [ColumnName("ParkingLots"), LoadColumn(4)]
+        public float ParkingLots { get; set; }
+
+
+        [ColumnName("Floor"), LoadColumn(5)]
+        public float Floor { get; set; }
+
+
+        [ColumnName("Animal"), LoadColumn(6)]
+        public string Animal { get; set; }
+
+
+        [ColumnName("Furnished"), LoadColumn(7)]
+        public string Furnished { get; set; }
+
+
+        [ColumnName("Price"), LoadColumn(8)]
+        public float Price { get; set; }
+
 
 
     }

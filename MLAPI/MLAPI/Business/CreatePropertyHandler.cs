@@ -17,7 +17,7 @@ namespace MLAPI.Business
         }
         public async Task<Property> Handle(CreateProperty request, CancellationToken cancellationToken)
         {
-            Property property = Property.Create(request.LotArea, request.LotConfig, request.Zone, request.Floors, request.OverallCond, request.YearBuilt, request.Rooms, request.SaleCondition, request.SalePrice);
+            Property property = Property.Create(request.Zone, request.Area, request.Rooms, request.Bathrooms, request.ParkingLots, request.Floor, request.Animal, request.Furnished, request.Price);
             //add property to db
             //save changes by id
             return property;  //use the get by id method

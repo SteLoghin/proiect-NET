@@ -12,29 +12,29 @@ namespace MLAPIML.ConsoleApp
             // Create single instance of sample data from first line of dataset for model input
             ModelInput sampleData = new ModelInput()
             {
-                LotArea = 8450F,
-                LotConfig = @"Inside",
-                Zone = @"CollgCr",
-                Floors = @"2Story",
-                OverallCond = 5F,
-                YearBuilt = 2003F,
-                Rooms = 8F,
-                SaleCondition = @"Normal",
+                Zone = @"Podu Ros",
+                Area = 70F,
+                Rooms = 2F,
+                Bathrooms = 1F,
+                ParkingLots = 1F,
+                Floor = 7F,
+                Animal = @"1",
+                Furnished = @"1",
             };
 
             // Make a single prediction on the sample data and print results
             var predictionResult = ConsumeModel.Predict(sampleData);
 
-            Console.WriteLine("Using model to make single prediction -- Comparing actual SalePrice with predicted SalePrice from sample data...\n\n");
-            Console.WriteLine($"LotArea: {sampleData.LotArea}");
-            Console.WriteLine($"LotConfig: {sampleData.LotConfig}");
+            Console.WriteLine("Using model to make single prediction -- Comparing actual Price with predicted Price from sample data...\n\n");
             Console.WriteLine($"Zone: {sampleData.Zone}");
-            Console.WriteLine($"Floors: {sampleData.Floors}");
-            Console.WriteLine($"OverallCond: {sampleData.OverallCond}");
-            Console.WriteLine($"YearBuilt: {sampleData.YearBuilt}");
+            Console.WriteLine($"Area: {sampleData.Area}");
             Console.WriteLine($"Rooms: {sampleData.Rooms}");
-            Console.WriteLine($"SaleCondition: {sampleData.SaleCondition}");
-            Console.WriteLine($"\n\nPredicted SalePrice: {predictionResult.Score}\n\n");
+            Console.WriteLine($"Bathrooms: {sampleData.Bathrooms}");
+            Console.WriteLine($"ParkingLots: {sampleData.ParkingLots}");
+            Console.WriteLine($"Floor: {sampleData.Floor}");
+            Console.WriteLine($"Animal: {sampleData.Animal}");
+            Console.WriteLine($"Furnished: {sampleData.Furnished}");
+            Console.WriteLine($"\n\nPredicted Price: {predictionResult.Score}\n\n");
             Console.WriteLine("=============== End of process, hit any key to finish ===============");
             Console.ReadKey();
         }

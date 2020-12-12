@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gQ8Tljc8cNZmxLQIdcwNOqx+G8EtjH935/1rKNHeJijKmJs1wEBXOtHjCj49miTu//SqqwyJY3+qXEmw8C/yxw==",
+  "dgSpecHash": "jtFV/UiDspvva867B0ESVGrhP+d9ySZpi8E+cccoTbjzw1zp6bP8ZF/SX9xXLZDOlMWmFqZrRuNC/37nv9m6dg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj",
+  "projectFilePath": "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\damia\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
