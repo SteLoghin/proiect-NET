@@ -6,15 +6,14 @@ class PostForm extends Component {
 		super(props)
 
 		this.state = {
-			lotArea:0,
-			lotConfig:'',
-			zone:'',
-			floors:'',
-			overallCond:0,
-			yearBuilt:0,
-			rooms:0,
-			saleCondition:'',
-			
+			Zone:'',
+			Area:0,
+			Rooms:0,
+			Bathrooms:0,
+			ParkingLots:0,
+			Floor:0,
+			Animal:0,
+			Furnished:''
 		}
 	}
 
@@ -26,8 +25,7 @@ class PostForm extends Component {
 		e.preventDefault()
 		console.log(this.state)
 		axios
-			//.post('http://localhost:5000/api/v1/predictions', this.state)
-			.post('http://dotnethouse.azurewebsites.net/api/v1/predictions', this.state)
+			.get('http://dotnethouse.azurewebsites.net/api/v1/predictions',this.state)
 			.then(response => {
 				console.log(response)
 				const data=JSON.parse(JSON.stringify(response))
@@ -40,93 +38,103 @@ class PostForm extends Component {
 	}
 
 	render() {
-		const { lotArea,lotConfig,zone,floors,overallCond,yearBuilt,rooms,saleCondition} = this.state
+		const { zone,area,rooms,bathrooms,parkingLots,floor,animal,furnished} = this.state
 		return (
 			<div className="dataForm">
 				<form onSubmit={this.submitHandler}>
 					<h2>Spune-ne ce locuinta iti doresti</h2>
 					<h3>Noi iti aratam pretul :)</h3>
 					<div>
-						<label for="lotArea">Lot Area</label><br />
-						<input
-							type="number"
-							name="lotArea"
-							id="lotArea"
-                            placeholder="Lot Area"
-							value={lotArea}
-							onChange={this.changeHandler}
-							
-						/>
-					</div>
-					<div>
-					<label for="lotConfig">Lot Config</label><br />
+						<label >Zone
+						<br />
 						<input
 							type="text"
-                            name="lotConfig"
-							value={lotConfig}
-							onChange={this.changeHandler}
-							id="lotConfig"
-						/>
-					</div>
-					<div>
-					<label for="zone">Zone</label><br />
-						<input
-							type="text"
-							name="zone"
-							id="zone"
+							name="Zone"
+							id="Zone"
 							value={zone}
 							onChange={this.changeHandler}
-						/>
+						/></label>
 					</div>
 					<div>
-					<label for="floors">Floors</label><br />
-						<input
-							type="text"
-                            name="floors"
-							value={floors}
-							onChange={this.changeHandler}
-							id="floors"
-						/>
-					</div>
-					<div>
-					<label for="overallCond">Overall Condition</label><br />
+					<label>Area
+					<br />
 						<input
 							type="number"
-                            name="overallCond"
-                            id="overallCond"
-							value={overallCond}
+                            name="Area"
+							value={area}
 							onChange={this.changeHandler}
-						/>
+							id="lotConfig"
+						/></label>
 					</div>
 					<div>
-					<label for="yearBuilt">Year Built</label><br />
+					<label>Rooms <br />
 						<input
 							type="number"
-                            name="yearBuilt"
-                            id="yearBuilt"
-							value={yearBuilt}
-							onChange={this.changeHandler}
-						/>
-					</div>
-					<div>
-					<label for="rooms">Rooms</label><br />
-						<input
-							type="number"
-                            name="rooms"
-                            id="rooms"
+							name="Rooms"
+							id="Rooms"
 							value={rooms}
 							onChange={this.changeHandler}
-						/>
+						/></label>
 					</div>
 					<div>
-					<label for="saleCondition">Sale Condition</label><br />
+					<label>Bathrooms
+					<br />
 						<input
-							type="text"
-                            name="saleCondition"
-                            id="saleCondition"
-							value={saleCondition}
+							type="number"
+                            name="Bathrooms"
+							value={bathrooms}
+							onChange={this.changeHandler}
+							id="Bathrooms"
+						/>
+					</label>
+					</div>
+					<div>
+					<label >Parking Lots
+					<br />
+						<input
+							type="number"
+                            name="ParkingLots"
+                            id="ParkingLots"
+							value={parkingLots}
 							onChange={this.changeHandler}
 						/>
+					</label>
+					</div>
+					<div>
+					<label>Floor
+					<br />
+						<input
+							type="number"
+                            name="Floor"
+                            id="Floor"
+							value={floor}
+							onChange={this.changeHandler}
+						/>
+					</label>
+					</div>
+					<div>
+					<label>Animal
+					<br />
+						<input
+							type="text"
+                            name="Animal"
+                            id="Animal"
+							value={animal}
+							onChange={this.changeHandler}
+						/>
+					</label>
+					</div>
+					<div>
+					<label>Furnished
+					<br />
+						<input
+							type="text"
+                            name="Furnished"
+                            id="Furnished"
+							value={furnished}
+							onChange={this.changeHandler}
+						/>
+					</label>
 					</div>
 					<button type="submit">Trimite</button>
 					<p id="raspuns"></p>
