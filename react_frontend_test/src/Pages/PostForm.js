@@ -23,15 +23,28 @@ class PostForm extends Component {
 
 	submitHandler = e => {
 		e.preventDefault()
-		console.log(this.state)
+		console.log(this.state);
+		
 		axios
-		.get('http://localhost:5000/api/v1/predictions')
+		.get('http://localhost:5000/api/v1/predictions',{
+			params:{
+				zone:this.state.Zone,
+				area:this.state.Area,
+				rooms:this.state.rooms,
+				bathrooms:this.state.Bathrooms,
+				parkingLots:this.state.ParkingLots,
+				floor:this.state.Floor,
+				animal:this.state.Animal,
+				furnished:this.state.Furnished
+			}
+		})
 			// .get('http://dotnethouse.azurewebsites.net/api/v1/predictions',this.state)
 			.then(response => {
 				console.log(response)
-				const data=JSON.parse(JSON.stringify(response))
-				console.log(data)
-				document.getElementById("raspuns").innerHTML="Estimated price is: "+ data.data;
+				const data=JSON.parse(JSON.stringify(response));
+				console.log('daaaaaa');
+				console.log(data);
+				document.getElementById("raspuns").innerHTML="Estimated price is: "+ (Math.round(data.data * 100) / 100).toFixed(2);
 			})
 			.catch(error => {
 				console.log(error)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../Style/AdminLogin.css';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
 
 class AdminPage extends Component {
@@ -10,8 +10,8 @@ class AdminPage extends Component {
 
 		this.state = {
 			Zone:'Copou',
-			Area:3,
-			Rooms:2,
+			Area:35,
+			Rooms:23,
 			Bathrooms:4,
 			ParkingLots:5,
 			Floor:4,
@@ -34,7 +34,7 @@ class AdminPage extends Component {
 				console.log(response.status)
 				const data=JSON.parse(JSON.stringify(response))
 				console.log(data)
-                if(response.status == 200){
+                if(response.status === 200){
                     console.log("here");
                     this.props.history.push("/admin-dashboard")
                 }
@@ -48,9 +48,9 @@ class AdminPage extends Component {
 	render() {
 		return (
 			<React.Fragment>
-                <div class="wrapper fadeInDown">
+                <div className="wrapper fadeInDown">
                 <div id="formContent">
-                <div class="fadeIn first">
+                <div className="fadeIn first">
                     <h2 className="admin-title">Admin</h2>
                     <img src="https://img.icons8.com/bubbles/100/000000/admin-settings-male.png" id="icon" alt="UserIcon" />
                    
