@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj": {}
+    "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj": {}
   },
   "projects": {
-    "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj": {
+    "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj",
+        "projectUniqueName": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj",
         "projectName": "MLAPIML.Model",
-        "projectPath": "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj",
+        "projectPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj",
         "packagesPath": "C:\\Users\\damia\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\obj\\",
+        "outputPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -72,14 +72,14 @@
         }
       }
     },
-    "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj": {
+    "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj",
+        "projectUniqueName": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj",
         "projectName": "MLAPI",
-        "projectPath": "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj",
+        "projectPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj",
         "packagesPath": "C:\\Users\\damia\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\obj\\",
+        "outputPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -99,8 +99,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj": {
-                "projectPath": "c:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj"
+              "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj": {
+                "projectPath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj"
               }
             }
           }
@@ -144,6 +144,10 @@
             "Microsoft.ML": {
               "target": "Package",
               "version": "[1.5.2, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.11.5, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

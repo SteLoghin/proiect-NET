@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MLAPI.Data;
+using MLAPI.Models;
 using System.Collections.Generic;
 
 namespace MLAPI.DTOs

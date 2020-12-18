@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MLAPI.Data;
+using MLAPI.Models;
 using MLAPI.DataModels;
 using MLAPI.DTOs;
 using System.Collections.Generic;
@@ -21,17 +21,39 @@ namespace MLAPI.Controllers
 
         [HttpGet]
         [Route("properties")]
-        public ActionResult<IEnumerable<Property>> Get()
+        public async Task<ActionResult<IEnumerable<Property>>> Get()
         {
-            return null;
+            var properties = await mediator.Send(new GetProperties());
+            if(properties == null)
+            {
+                return NotFound();
+            }
+            return Ok(properties);
+        }
+
+        [HttpGet]
+        [Route("properties/{id}")]
+        public async Task<ActionResult<Property>> GetById(string id)
+        {
+            var property = await mediator.Send(new GetProperty { Id = id });
+            if (property == null)
+            {
+                return NotFound();
+            }
+            return Ok(property);
         }
 
         [HttpPost]
         [Route("properties")]
         public async Task<ActionResult<Property>> Create([FromBody] CreateProperty request)
         {
+            //check if valid
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             var property = await mediator.Send(request);
-            return property;
+            return CreatedAtAction(nameof(Get), new { id = property.Id }, property);
         }
 
         [HttpPost]
@@ -61,6 +83,7 @@ namespace MLAPI.Controllers
         public IActionResult Put(int id, PropertyData property)
         {
             //modify only one property
+            //TODO: do this with mediatr
             return null;
         }
 

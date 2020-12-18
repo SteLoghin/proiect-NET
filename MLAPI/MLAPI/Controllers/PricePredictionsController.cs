@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.ML;
 using MLAPI.DataModels;
-using MLAPI.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MLAPI.Controllers
 {
@@ -18,14 +18,15 @@ namespace MLAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<double> Get([FromQuery] PropertyData data)
+        public async Task<ActionResult<double>> Get([FromQuery] PropertyData data)
         {
+            //TODO: make this async
             if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid property data");
             }
 
-            PropertyPrediction predictedValue = this.predictionEnginePool.Predict(modelName: "PropertyPriceModel", example: data);
+            PropertyPrediction predictedValue = predictionEnginePool.Predict(modelName: "PropertyPriceModel", example: data);
             double price = Convert.ToDouble(predictedValue.Price);
 
             return Ok(price);

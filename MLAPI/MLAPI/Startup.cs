@@ -5,8 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.ML;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MLAPI.DataModels;
+using MLAPI.Models;
+using MLAPI.Services;
 
 namespace MLAPI
 {
@@ -23,6 +26,14 @@ namespace MLAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<PropertiesDatabaseSettings>(
+                Configuration.GetSection(nameof(PropertiesDatabaseSettings)));
+
+            services.AddSingleton<IPropertiesDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<PropertiesDatabaseSettings>>().Value);
+
+            services.AddScoped<IPropertyService, PropertyService>();
+            services.AddSingleton<PropertyService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -39,6 +50,7 @@ namespace MLAPI
                 });
             });
             services.AddMediatR(typeof(Startup).Assembly);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

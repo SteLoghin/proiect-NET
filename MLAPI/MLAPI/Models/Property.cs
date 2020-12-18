@@ -1,10 +1,14 @@
 ﻿using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace MLAPI.Data
+namespace MLAPI.Models
 {
     public class Property
     {
-        public Guid Id { get; private set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; private set; }
 
         public string Zone { get; private set; }
 
@@ -28,7 +32,6 @@ namespace MLAPI.Data
         {
             return new Property
             {
-                Id = Guid.NewGuid(),
                 Zone = zone,
                 Area = area,
                 Rooms = rooms,

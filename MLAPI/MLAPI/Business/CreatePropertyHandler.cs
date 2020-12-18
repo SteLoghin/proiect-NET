@@ -1,6 +1,7 @@
 ﻿using MediatR;
-using MLAPI.Data;
+using MLAPI.Models;
 using MLAPI.DTOs;
+using MLAPI.Services;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,18 +10,17 @@ namespace MLAPI.Business
 {
     public class CreatePropertyHandler : IRequestHandler<CreateProperty, Property>
     {
-        //private readonly DataContext context;
+        private readonly IPropertyService propertyService;
 
-        public CreatePropertyHandler()//DataContext context)
+        public CreatePropertyHandler(IPropertyService propertyService)
         {
-            //this.context = context;
+            this.propertyService = propertyService;
         }
         public async Task<Property> Handle(CreateProperty request, CancellationToken cancellationToken)
         {
             Property property = Property.Create(request.Zone, request.Area, request.Rooms, request.Bathrooms, request.ParkingLots, request.Floor, request.Animal, request.Furnished, request.Price);
-            //add property to db
-            //save changes by id
-            return property;  //use the get by id method
+            propertyService.Create(property);
+            return property;
         }
     }
 }
