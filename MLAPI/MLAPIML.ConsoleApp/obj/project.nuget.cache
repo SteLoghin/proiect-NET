@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/H/Ba9B7690TCiYclXKEm1WzVPiSpKyk/RPl2dLegGu3Quxk/Xi05xIMgV2Ud+CzwYNVyy/YItgWvr088L+9xw==",
+  "dgSpecHash": "i/nlXQ7DfRGcbVlYr7QwS4xSn64QXyQqH808pKsHKUWiT+JUiK/3vbHHNv0GVdwpHMUCT0GX7JlYDy7v6FztVQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.ConsoleApp\\MLAPIML.ConsoleApp.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,6 @@
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml\\1.5.2\\microsoft.ml.1.5.2.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.cpumath\\1.5.2\\microsoft.ml.cpumath.1.5.2.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.dataview\\1.5.2\\microsoft.ml.dataview.1.5.2.nupkg.sha512",
-    "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.fasttree\\1.5.2\\microsoft.ml.fasttree.1.5.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",

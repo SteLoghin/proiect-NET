@@ -28,10 +28,9 @@ namespace MLAPI.Tests.Business
                 Area = 90,
                 Rooms = 3,
                 Bathrooms = 1,
-                ParkingLots = 2,
+                Kitchens = "2",
                 Floor = 3,
-                Animal = "1",
-                Furnished = "0",
+                Link = "1",
                 Price = 280
             }, new CancellationToken());
 

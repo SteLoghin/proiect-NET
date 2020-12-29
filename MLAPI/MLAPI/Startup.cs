@@ -33,6 +33,7 @@ namespace MLAPI
                 sp.GetRequiredService<IOptions<PropertiesDatabaseSettings>>().Value);
 
             services.AddScoped<IPropertyService, PropertyService>();
+            services.AddScoped<IModelBuilder, ModelBuilder>();
             services.AddSingleton<PropertyService>();
 
             services.AddControllers();

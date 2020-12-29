@@ -2,7 +2,6 @@
 using MLAPI.Models;
 using MLAPI.DTOs;
 using MLAPI.Services;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,8 +17,8 @@ namespace MLAPI.Business
         }
         public async Task<Property> Handle(CreateProperty request, CancellationToken cancellationToken)
         {
-            Property property = Property.Create(request.Zone, request.Area, request.Rooms, request.Bathrooms, request.ParkingLots, request.Floor, request.Animal, request.Furnished, request.Price);
-            propertyService.Create(property);
+            Property property = Property.Create(request);
+            await propertyService.Create(property);
             return property;
         }
     }

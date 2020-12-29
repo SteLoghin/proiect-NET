@@ -3,8 +3,10 @@ using MLAPI.Models;
 
 namespace MLAPI.DTOs
 {
-    public class CreateProperty : IRequest<Property>
+    public class UpdateProperty : IRequest<Property>
     {
+        public string Id { get; set; }
+
         public float Rooms { get; set; }
 
         public float Area { get; set; }
@@ -14,7 +16,7 @@ namespace MLAPI.DTOs
         public float Year { get; set; }
 
         public float Bathrooms { get; set; }
-
+        
         public string Kitchens { get; set; }
 
         public string Link { get; set; }

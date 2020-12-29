@@ -1,8 +1,11 @@
 ﻿
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using MLAPI.Business;
 using MLAPI.Controllers;
 using MLAPI.DTOs;
 using MLAPI.Models;
+using MLAPI.Services;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -15,7 +18,8 @@ namespace MLAPI.Tests.Controllers
     public class AdminCommandsControllerTests
     {
         private readonly Mock<IMediator> _mockMediatr;
-        private readonly AdminCommandsController _controller;
+        private readonly AdminController _controller;
+
 
         public AdminCommandsControllerTests()
         {
@@ -24,21 +28,28 @@ namespace MLAPI.Tests.Controllers
         }
 
         [Fact]
-        public async void Get_Action_Returns_Exact_Properties_Number()
+        public void Get_Action_Returns_Ok_Result()
         {
-            List<Property> list = new List<Property>() { Property.Create("Copou", 1, 2, 3, 4, 5, "1", "2", 233),
-                                                         Property.Create("Copou", 1, 2, 3, 4, 5, "1", "2", 233) };
-            _mockMediatr.Setup(mediator => mediator.Send(new GetProperties(), new CancellationToken()))
-                .Returns(Task.FromResult(list));
+            _mockMediatr.Setup(x => x.Send(It.IsAny<GetProperties>(), new CancellationToken())).ReturnsAsync(new List<Property>());
 
-            var result = await _controller.Get();
-            Console.WriteLine(result);
-            /*int counter = 0;
-            foreach(var r in result.Value)
-            {
-                counter++;
-            }
-            Assert.Equal(2, counter);*/
+            //Action
+            var result = _controller.Get();
+
+            //Assert
+            Assert.IsType<Task<ActionResult<IEnumerable<Property>>>>(result);
+        }
+
+        [Fact]
+        public void GetById_Action_Returns_Ok_Result()
+        {   
+            _mockMediatr.Setup(x => x.Send(It.IsAny<GetProperty>(), new CancellationToken())).
+                ReturnsAsync(Property.Create(new CreateProperty()));
+
+            //Action
+            var result = _controller.GetById("a");
+
+            //Assert
+            Assert.IsType<Task<ActionResult<Property>>>(result);
         }
     }
 }

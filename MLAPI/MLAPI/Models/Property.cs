@@ -1,4 +1,5 @@
 ﻿using System;
+using MLAPI.DTOs;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -10,52 +11,51 @@ namespace MLAPI.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; private set; }
 
-        public string Zone { get; private set; }
+        public float Rooms { get; private set; }
 
         public float Area { get; private set; }
 
-        public float Rooms { get; private set; }
+        public float Floor { get; private set; }
+
+        public float Year { get; private set; }
 
         public float Bathrooms { get; private set; }
 
-        public float ParkingLots { get; private set; }
+        public string Kitchens { get; private set; }
 
-        public float Floor { get; private set; }
+        public string Link { get; private set; }
 
-        public string Animal { get; private set; }
-
-        public string Furnished { get; private set; }
+        public string Zone { get; private set; }
 
         public float Price { get; private set; }
 
-        public static Property Create(string zone, float area, float rooms, float bathrooms, float parkingLots, float floor, string animal, string furnished, float price)
+        public static Property Create(CreateProperty property)
         {
             return new Property
             {
-                Zone = zone,
-                Area = area,
-                Rooms = rooms,
-                Bathrooms = bathrooms,
-                ParkingLots = parkingLots,
-                Floor = floor,
-                Animal = animal,
-                Furnished = furnished,
-                Price = price
+                Zone = property.Zone,
+                Area = property.Area,
+                Rooms = property.Rooms,
+                Bathrooms = property.Bathrooms,
+                Kitchens = property.Kitchens,
+                Floor = property.Floor,
+                Link = property.Link,
+                Year = property.Year,
+                Price = property.Price
             };
         }
 
-        public void Update(string zone, float area, float rooms, float bathrooms, float parkingLots, float floor, string animal, string furnished, float price)
+        public void Update(UpdateProperty property)
         {
-            Zone = zone;
-            Area = area;
-            Rooms = rooms;
-            Bathrooms = bathrooms;
-            ParkingLots = parkingLots;
-            Floor = floor;
-            Animal = animal;
-            Furnished = furnished;
-            Price = price;
+            Zone = property.Zone;
+            Area = property.Area;
+            Rooms = property.Rooms;
+            Bathrooms = property.Bathrooms;
+            Kitchens = property.Kitchens;
+            Floor = property.Floor;
+            Link = property.Link;
+            Year = property.Year;
+            Price = property.Price;
         }
-
     }
 }

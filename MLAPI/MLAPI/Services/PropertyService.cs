@@ -1,7 +1,9 @@
 ﻿
 using MLAPI.Models;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace MLAPI.Services
@@ -17,21 +19,24 @@ namespace MLAPI.Services
             _properties = database.GetCollection<Property>(settings.PropertiesCollectionName);
         }
 
-        public Task<List<Property>> Get() => _properties.Find(property => true).ToListAsync();
-
-        public Task<Property> Get(string id) => _properties.Find(p => p.Id == id).FirstOrDefaultAsync();
-
-        public Property Create(Property prop)
+        public async Task<List<Property>> Get(FilterDefinition<Property> filter)
         {
-            _properties.InsertOne(prop);
+            return await _properties.Find(filter).ToListAsync();
+        }
+
+        public async Task<Property> GetById(string id) => await _properties.FindAsync(p => p.Id == id).Result.FirstOrDefaultAsync();
+
+        public async Task<Property> Create(Property prop)
+        {
+            await _properties.InsertOneAsync(prop);
             return prop;
         }
 
-        public void Update(string id, Property newProp)
+        public async void Update(string id, Property newProp)
         {
-            _properties.ReplaceOne(p => p.Id == id, newProp);
+            await _properties.ReplaceOneAsync(p => p.Id == id, newProp);
         }
 
-        public void Delete(string id) => _properties.DeleteOne(p => p.Id == id);
+        public async void Delete(string id) => await _properties.DeleteOneAsync(p => p.Id == id);
     }
 }

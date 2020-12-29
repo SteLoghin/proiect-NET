@@ -50,10 +50,6 @@
             "Microsoft.ML": {
               "target": "Package",
               "version": "[1.5.2, )"
-            },
-            "Microsoft.ML.FastTree": {
-              "target": "Package",
-              "version": "[1.5.2, )"
             }
           },
           "imports": [
@@ -115,10 +111,6 @@
           "targetAlias": "netstandard2.0",
           "dependencies": {
             "Microsoft.ML": {
-              "target": "Package",
-              "version": "[1.5.2, )"
-            },
-            "Microsoft.ML.FastTree": {
               "target": "Package",
               "version": "[1.5.2, )"
             },

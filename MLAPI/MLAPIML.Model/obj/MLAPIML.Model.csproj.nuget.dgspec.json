@@ -47,10 +47,6 @@
               "target": "Package",
               "version": "[1.5.2, )"
             },
-            "Microsoft.ML.FastTree": {
-              "target": "Package",
-              "version": "[1.5.2, )"
-            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",

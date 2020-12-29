@@ -123,39 +123,6 @@
           "lib/netstandard2.0/Microsoft.ML.DataView.dll": {}
         }
       },
-      "Microsoft.ML.FastTree/1.5.2": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.ML": "1.5.2"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.ML.FastTree.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.ML.FastTree.dll": {}
-        },
-        "build": {
-          "build/netstandard2.0/Microsoft.ML.FastTree.props": {}
-        },
-        "runtimeTargets": {
-          "runtimes/linux-x64/native/libFastTreeNative.so": {
-            "assetType": "native",
-            "rid": "linux-x64"
-          },
-          "runtimes/osx-x64/native/libFastTreeNative.dylib": {
-            "assetType": "native",
-            "rid": "osx-x64"
-          },
-          "runtimes/win-x64/native/FastTreeNative.dll": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
-          "runtimes/win-x86/native/FastTreeNative.dll": {
-            "assetType": "native",
-            "rid": "win-x86"
-          }
-        }
-      },
       "Microsoft.NETCore.Platforms/1.1.0": {
         "type": "package",
         "compile": {
@@ -1563,8 +1530,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Microsoft.ML": "1.5.2",
-          "Microsoft.ML.FastTree": "1.5.2"
+          "Microsoft.ML": "1.5.2"
         },
         "compile": {
           "bin/placeholder/MLAPIML.Model.dll": {}
@@ -1707,27 +1673,6 @@
         "microsoft.ml.dataview.1.5.2.nupkg.sha512",
         "microsoft.ml.dataview.nuspec",
         "mlnetlogo.png"
-      ]
-    },
-    "Microsoft.ML.FastTree/1.5.2": {
-      "sha512": "msBnr/dEaZFSgxnTT0mhHmowDdB7TJk5MwNfZIsfx26ulxh43PTHM4635VXpPMaBXwBIgBCyWsFr18nbW/ZnKg==",
-      "type": "package",
-      "path": "microsoft.ml.fasttree/1.5.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "THIRD-PARTY-NOTICES.TXT",
-        "build/netstandard2.0/Microsoft.ML.FastTree.props",
-        "lib/netstandard2.0/Microsoft.ML.FastTree.dll",
-        "lib/netstandard2.0/Microsoft.ML.FastTree.xml",
-        "microsoft.ml.fasttree.1.5.2.nupkg.sha512",
-        "microsoft.ml.fasttree.nuspec",
-        "mlnetlogo.png",
-        "runtimes/linux-x64/native/libFastTreeNative.so",
-        "runtimes/osx-x64/native/libFastTreeNative.dylib",
-        "runtimes/win-x64/native/FastTreeNative.dll",
-        "runtimes/win-x86/native/FastTreeNative.dll"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -5493,8 +5438,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "MLAPIML.Model >= 1.0.0",
-      "Microsoft.ML >= 1.5.2",
-      "Microsoft.ML.FastTree >= 1.5.2"
+      "Microsoft.ML >= 1.5.2"
     ]
   },
   "packageFolders": {
@@ -5545,10 +5489,6 @@
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.ML": {
-            "target": "Package",
-            "version": "[1.5.2, )"
-          },
-          "Microsoft.ML.FastTree": {
             "target": "Package",
             "version": "[1.5.2, )"
           }

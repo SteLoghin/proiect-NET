@@ -19,7 +19,7 @@ namespace MLAPI.Business
         {
             if(request.Id.Length == 24)
             {
-                return await propertyService.Get(request.Id);
+                return await propertyService.GetById(request.Id);
             }
             return null;
         }

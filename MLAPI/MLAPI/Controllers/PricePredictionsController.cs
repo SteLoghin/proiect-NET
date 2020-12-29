@@ -27,7 +27,7 @@ namespace MLAPI.Controllers
             }
 
             PropertyPrediction predictedValue = predictionEnginePool.Predict(modelName: "PropertyPriceModel", example: data);
-            double price = Convert.ToDouble(predictedValue.Price);
+            double price = Convert.ToDouble(predictedValue.Score);
 
             return Ok(price);
         }

@@ -6,39 +6,39 @@ namespace MLAPIML.Model
 {
     public class ModelInput
     {
-        [ColumnName("Zone"), LoadColumn(0)]
-        public string Zone { get; set; }
-
-
-        [ColumnName("Area"), LoadColumn(1)]
-        public float Area { get; set; }
-
-
-        [ColumnName("Rooms"), LoadColumn(2)]
+        [ColumnName("rooms"), LoadColumn(0)]
         public float Rooms { get; set; }
 
 
-        [ColumnName("Bathrooms"), LoadColumn(3)]
-        public float Bathrooms { get; set; }
+        [ColumnName("area"), LoadColumn(1)]
+        public float Area { get; set; }
 
 
-        [ColumnName("ParkingLots"), LoadColumn(4)]
-        public float ParkingLots { get; set; }
-
-
-        [ColumnName("Floor"), LoadColumn(5)]
+        [ColumnName("floor"), LoadColumn(2)]
         public float Floor { get; set; }
 
 
-        [ColumnName("Animal"), LoadColumn(6)]
-        public string Animal { get; set; }
+        [ColumnName("year"), LoadColumn(3)]
+        public float Year { get; set; }
 
 
-        [ColumnName("Furnished"), LoadColumn(7)]
-        public string Furnished { get; set; }
+        [ColumnName("bathrooms"), LoadColumn(4)]
+        public float Bathrooms { get; set; }
 
 
-        [ColumnName("Price"), LoadColumn(8)]
+        [ColumnName("kitchens"), LoadColumn(5)]
+        public string Kitchens { get; set; }
+
+
+        [ColumnName("link"), LoadColumn(6)]
+        public string Link { get; set; }
+
+
+        [ColumnName("zone"), LoadColumn(7)]
+        public string Zone { get; set; }
+
+
+        [ColumnName("price"), LoadColumn(8)]
         public float Price { get; set; }
 
 

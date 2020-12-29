@@ -47,10 +47,6 @@
               "target": "Package",
               "version": "[1.5.2, )"
             },
-            "Microsoft.ML.FastTree": {
-              "target": "Package",
-              "version": "[1.5.2, )"
-            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
@@ -137,13 +133,17 @@
                 "NU1605"
               ]
             },
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
             "Microsoft.Extensions.ML": {
               "target": "Package",
               "version": "[1.5.2, )"
             },
             "Microsoft.ML": {
               "target": "Package",
-              "version": "[1.5.2, )"
+              "version": "[1.5.4, )"
             },
             "MongoDB.Driver": {
               "target": "Package",
