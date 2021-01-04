@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'web_crawler.urls'
@@ -77,8 +79,14 @@ WSGI_APPLICATION = 'web_crawler.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        "CLIENT": {
+           "name": "Crawler_Info",
+           "host": "mongodb+srv://dbUser:UGLrtKR1NBvejxLm@cluster0.xicwg.mongodb.net/Crawler_Info?retryWrites=true&w=majority",
+           "username": "dbUser",
+           "password": "UGLrtKR1NBvejxLm",
+           "authMechanism": "SCRAM-SHA-1",
+        }, 
     }
 }
 
@@ -120,3 +128,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CORS_ORIGIN_ALLOW_ALL = True # development, in production this should be false, and use the whitelist 
+
+# CORS_ORIGIN_WHITELIST = (
+#   'http://localhost:8000',
+# )
+
