@@ -6,14 +6,13 @@ class PostForm extends Component {
 		super(props)
 
 		this.state = {
-			Zone:'',
-			Area:0,
-			Rooms:0,
-			Bathrooms:0,
-			ParkingLots:0,
-			Floor:0,
-			Animal:0,
-			Furnished:''
+			Rooms: 0,
+			Area: 0,
+			Floor: 0,
+			Year: 0,
+			Bathrooms: 0,
+			Kitchens: '',
+			Zone: ''
 		}
 	}
 
@@ -28,14 +27,13 @@ class PostForm extends Component {
 		axios
 		.get('http://localhost:5000/api/v1/predictions',{
 			params:{
-				zone:this.state.Zone,
+				rooms:this.state.Rooms,
 				area:this.state.Area,
-				rooms:this.state.rooms,
-				bathrooms:this.state.Bathrooms,
-				parkingLots:this.state.ParkingLots,
 				floor:this.state.Floor,
-				animal:this.state.Animal,
-				furnished:this.state.Furnished
+				year:this.state.Year,
+				bathrooms:this.state.Bathrooms,
+				kitchens:this.state.Kitchens,
+				zone:this.state.Zone,
 			}
 		})
 			// .get('http://dotnethouse.azurewebsites.net/api/v1/predictions',this.state)
@@ -52,20 +50,20 @@ class PostForm extends Component {
 	}
 
 	render() {
-		const { zone,area,rooms,bathrooms,parkingLots,floor,animal,furnished} = this.state
+		const { rooms, area , floor, year, bathrooms, kitchens, zone} = this.state
 		return (
 			<div className="dataForm">
 				<form onSubmit={this.submitHandler}>
 					<h2>Spune-ne ce locuinta iti doresti</h2>
 					<h3>Noi iti aratam pretul :)</h3>
 					<div>
-						<label >Zone
+						<label >Rooms
 						<br />
 						<input
-							type="text"
-							name="Zone"
-							id="Zone"
-							value={zone}
+							type="number"
+							name="Rooms"
+							id="Rooms"
+							value={rooms}
 							onChange={this.changeHandler}
 						/></label>
 					</div>
@@ -81,12 +79,12 @@ class PostForm extends Component {
 						/></label>
 					</div>
 					<div>
-					<label>Rooms <br />
+					<label>Floor <br />
 						<input
 							type="number"
-							name="Rooms"
-							id="Rooms"
-							value={rooms}
+							name="Floor"
+							id="floor"
+							value={floor}
 							onChange={this.changeHandler}
 						/></label>
 					</div>
@@ -103,53 +101,42 @@ class PostForm extends Component {
 					</label>
 					</div>
 					<div>
-					<label >Parking Lots
+					<label >Year
 					<br />
 						<input
 							type="number"
-                            name="ParkingLots"
-                            id="ParkingLots"
-							value={parkingLots}
+                            name="Year"
+                            id="Year"
+							value={year}
 							onChange={this.changeHandler}
 						/>
 					</label>
 					</div>
 					<div>
-					<label>Floor
-					<br />
-						<input
-							type="number"
-                            name="Floor"
-                            id="Floor"
-							value={floor}
-							onChange={this.changeHandler}
-						/>
-					</label>
-					</div>
-					<div>
-					<label>Animal
+					<label>Kitchens
 					<br />
 						<input
 							type="text"
-                            name="Animal"
-                            id="Animal"
-							value={animal}
+                            name="Kitchens"
+                            id="kitchens"
+							value={kitchens}
 							onChange={this.changeHandler}
 						/>
 					</label>
 					</div>
 					<div>
-					<label>Furnished
+					<label>Zone
 					<br />
 						<input
 							type="text"
-                            name="Furnished"
-                            id="Furnished"
-							value={furnished}
+                            name="Zone"
+                            id="Zone"
+							value={zone}
 							onChange={this.changeHandler}
 						/>
 					</label>
 					</div>
+					
 					<button type="submit">Trimite</button>
 					<p id="raspuns"></p>
 				</form>
