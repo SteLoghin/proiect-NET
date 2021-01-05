@@ -3,7 +3,8 @@ from django.views import View
 from rest_framework.decorators import api_view
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import viewsets
+# from rest_framework import viewsets
+from django.core import serializers
 import requests
 from bs4 import BeautifulSoup
 import re, time
@@ -11,10 +12,15 @@ import re, time
 from .serializers import PropertySerializer
 from .models import Property, PropertyManager
 
-class PropertyViewSet(viewsets.ModelViewSet):
-    queryset = Property.objects.all()
-    serializer_class = PropertySerializer
+# class PropertyViewSet(viewsets.ModelViewSet):
+#     queryset = Property.objects.all()
+#     serializer_class = PropertySerializer
 
+class Properties(View):
+    def get(self, request):
+        properties = Property.objects.all().values()
+        properties = list(properties)
+        return JsonResponse(properties, safe=False)
 
 @method_decorator(csrf_exempt, name='dispatch')
 class Crawler(View):
