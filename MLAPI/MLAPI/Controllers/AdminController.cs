@@ -1,12 +1,9 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MLAPI.Models;
-using MLAPI.DataModels;
-using MLAPI.DTOs;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System;
 using MLAPI.Services;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace MLAPI.Controllers
 {
@@ -15,10 +12,49 @@ namespace MLAPI.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IModelBuilder modelBuilder;
+        private readonly ICrawlerComService crawler;
+        private readonly IPropertyService propertyService;
 
-        public AdminController(IModelBuilder modelBuilder)
+        public AdminController(IModelBuilder modelBuilder, ICrawlerComService crawler, IPropertyService propertyService)
         {
             this.modelBuilder = modelBuilder;
+            this.crawler = crawler;
+            this.propertyService = propertyService;
+        }
+
+        [HttpPost]
+        [Route("renew-training-data")]
+        public async Task<ActionResult> RenewTrainingData()
+        {
+            var properties = this.crawler.GetCrawlerProperties();
+            if(properties == null)
+            {
+                return Ok("No properties were found in the crawler");
+            }
+            else
+            {
+                propertyService.DeleteAll();
+                foreach(var p in properties.Result)
+                {
+                    await propertyService.Create(Property.Create(p));
+                }
+                return Ok("Succesfully renewed properties");
+            }
+        }
+
+        [HttpPost]
+        [Route("start-crawler")]
+        public async Task<ActionResult> RefreshCrawlerData()
+        {
+            var response = await crawler.StartCrawler();
+            if(response == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            else
+            {
+                return Ok(response.Content.ReadAsStringAsync().Result);
+            }
         }
 
         [HttpPost]

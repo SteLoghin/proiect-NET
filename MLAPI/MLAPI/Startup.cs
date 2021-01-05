@@ -34,6 +34,7 @@ namespace MLAPI
 
             services.AddScoped<IPropertyService, PropertyService>();
             services.AddScoped<IModelBuilder, ModelBuilder>();
+            services.AddScoped<ICrawlerComService, CrawlerComService>();
             services.AddSingleton<PropertyService>();
 
             services.AddControllers();

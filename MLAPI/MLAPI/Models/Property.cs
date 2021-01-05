@@ -1,4 +1,4 @@
-﻿using System;
+﻿using MLAPI.DataModels;
 using MLAPI.DTOs;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -56,6 +56,22 @@ namespace MLAPI.Models
             Link = property.Link;
             Year = property.Year;
             Price = property.Price;
+        }
+        
+        public static PropertyData Cast(Property property)
+        {
+            return new PropertyData
+            {
+                Zone = property.Zone,
+                Area = property.Area,
+                Rooms = property.Rooms,
+                Bathrooms = property.Bathrooms,
+                Kitchens = property.Kitchens,
+                Floor = property.Floor,
+                Link = property.Link,
+                Year = property.Year,
+                Price = property.Price
+            };
         }
     }
 }

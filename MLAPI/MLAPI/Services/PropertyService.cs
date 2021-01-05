@@ -1,9 +1,6 @@
-﻿
-using MLAPI.Models;
+﻿using MLAPI.Models;
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace MLAPI.Services
@@ -38,5 +35,7 @@ namespace MLAPI.Services
         }
 
         public async void Delete(string id) => await _properties.DeleteOneAsync(p => p.Id == id);
+
+        public async void DeleteAll() => await _properties.DeleteManyAsync(Builders<Property>.Filter.Where(prop => true));
     }
 }
