@@ -47,6 +47,30 @@ class PostForm extends Component {
 			.catch(error => {
 				console.log(error)
 			})
+		
+		axios 
+		.get('http://localhost:5000/api/properties', {
+			params: {
+				rooms:this.state.Rooms,
+				bathrooms:this.state.Bathrooms,
+				
+			}
+		}).then(response => {
+			console.log(response)
+			const linkData =JSON.parse(JSON.stringify(response));
+			
+			const linksList = linkData.data.map(({link}) => link);
+			console.log(linksList)
+
+			document.getElementById("links_show_list").innerHTML="Links: "+ linksList;
+
+			}
+			)
+
+			
+		.catch(error => {
+			console.log(error)
+		})
 	}
 
 	render() {
@@ -139,6 +163,8 @@ class PostForm extends Component {
 					
 					<button type="submit">Trimite</button>
 					<p id="raspuns"></p>
+
+					<p id="links_show_list"></p>
 				</form>
 				
 			</div>
