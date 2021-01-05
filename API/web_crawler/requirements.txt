@@ -1,9 +1,0 @@
-django
-gunicorn
-django-heroku
-djangorestframework
-dnspython
-djongo
-django-cors-headers
-bs4
-requests
