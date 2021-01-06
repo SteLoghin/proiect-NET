@@ -25,7 +25,7 @@ SECRET_KEY = 'le(#apqov2mpeyc@4j8a*7%8l@scu#3vrp3bx*xsmmd(nt0^(l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://properties-crawler.herokuapp.com/']
 
 
 # Application definition
