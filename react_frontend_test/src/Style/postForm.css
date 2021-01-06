@@ -1,7 +1,4 @@
-.dataForm{
-    display:flex;
-    justify-content: center;
-}
+
 
 .dataForm form{
     text-align: center;
@@ -9,4 +6,64 @@
 
 #links_show_list{
    list-style: none; 
+}
+
+.body_page{
+    width: 100%;
+    height: 100%;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.centered_content{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border: 2px solid red;
+}
+
+.form_image {
+    height: 35em;
+    width: 40%;
+    border: 2px solid green;
+    background-image: url("../Images/house_background.png");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+}
+
+
+.dataForm {
+    margin-left: 1.5em;
+}
+
+.form_input {
+    width: 100%;
+    background: #e6e6e6;
+    font-family: Montserrat-Bold;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+    border-radius: 25px;
+    padding: 6px 15px;
+}
+
+.form_image {
+    display: flex;
+    
+}
+
+#raspuns {
+    text-align: center;
+    color: white;
+    font-size: 3em;
+}
+
+.image_text{
+    height: 100%;
+    width: 100%;
+    display: flex; 
+    align-items: center;
 }

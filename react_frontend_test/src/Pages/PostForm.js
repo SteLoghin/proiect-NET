@@ -43,7 +43,7 @@ class PostForm extends Component {
         console.log("daaaaaa");
         console.log(data);
         document.getElementById("raspuns").textContent =
-          "Pretul estimat este: " +
+          "Estimated payment per month: " +
           (Math.round(data.data * 100) / 100).toFixed(2) +
           " euro";
       })
@@ -98,15 +98,24 @@ class PostForm extends Component {
   render() {
     const { rooms, area, floor, year, bathrooms, kitchens, zone } = this.state;
     return (
+      <div className="body_page">
+      <div className="centered_content">
+
+      <div className="form_image">
+        <div className="image_text">
+          <p id="raspuns"></p>
+        </div>
+      </div>
+
       <div className="dataForm">
         <form onSubmit={this.submitHandler}>
-          <h2>Spune-ne ce locuinta iti doresti</h2>
-          <h3>Noi iti aratam pretul :)</h3>
+          <h2>Where do you want to live in Iasi?</h2>
+          <h3>We will show you how much $</h3>
           <div>
             <label>
               Rooms
               <br />
-              <input
+              <input className="form_input"
                 type="number"
                 name="Rooms"
                 id="Rooms"
@@ -119,7 +128,7 @@ class PostForm extends Component {
             <label>
               Area
               <br />
-              <input
+              <input className="form_input"
                 type="number"
                 name="Area"
                 value={area}
@@ -131,7 +140,7 @@ class PostForm extends Component {
           <div>
             <label>
               Floor <br />
-              <input
+              <input className="form_input"
                 type="number"
                 name="Floor"
                 id="floor"
@@ -144,7 +153,7 @@ class PostForm extends Component {
             <label>
               Bathrooms
               <br />
-              <input
+              <input className="form_input"
                 type="number"
                 name="Bathrooms"
                 value={bathrooms}
@@ -157,7 +166,7 @@ class PostForm extends Component {
             <label>
               Year
               <br />
-              <input
+              <input className="form_input"
                 type="number"
                 name="Year"
                 id="Year"
@@ -170,7 +179,7 @@ class PostForm extends Component {
             <label>
               Kitchens
               <br />
-              <input
+              <input className="form_input"
                 type="text"
                 name="Kitchens"
                 id="kitchens"
@@ -183,7 +192,7 @@ class PostForm extends Component {
             <label>
               Zone
               <br />
-              <input
+              <input className="form_input"
                 type="text"
                 name="Zone"
                 id="Zone"
@@ -193,13 +202,17 @@ class PostForm extends Component {
             </label>
           </div>
 
-          <button type="submit">Trimite</button>
-          <p id="raspuns"></p>
+          <button type="submit">Get a price!</button>
+          
 
-          <p className="links"></p>
-          <ul id="links_show_list"></ul>
+          
         </form>
       </div>
+      </div>
+      {/*<p className="links"></p>
+      <ul id="links_show_list"></ul> */}
+      </div>
+      
     );
   }
 }
