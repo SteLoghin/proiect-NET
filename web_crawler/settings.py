@@ -128,6 +128,6 @@ CORS_ORIGIN_ALLOW_ALL = True # development, in production this should be false, 
 #   'http://localhost:8000',
 # )
 
-DJANGO_SETTINGS_MODULE=settings rq worker high default low
+DJANGO_SETTINGS_MODULE='settings rq worker high default low'
 
 django_heroku.settings(locals())
