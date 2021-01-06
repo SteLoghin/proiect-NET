@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import django_heroku
+import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'le(#apqov2mpeyc@4j8a*7%8l@scu#3vrp3bx*xsmmd(nt0^(l'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['https://properties-crawler.herokuapp.com/']
 
@@ -77,19 +79,20 @@ WSGI_APPLICATION = 'web_crawler.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        "CLIENT": {
-           "name": "Crawler_Info",
-           "host": "mongodb+srv://dbUser:UGLrtKR1NBvejxLm@cluster0.xicwg.mongodb.net/Crawler_Info?retryWrites=true&w=majority",
-           "username": "dbUser",
-           "password": "UGLrtKR1NBvejxLm",
-           "authMechanism": "SCRAM-SHA-1",
-        }, 
-    }
-}
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         "CLIENT": {
+#            "name": "Crawler_Info",
+#            "host": "mongodb+srv://dbUser:UGLrtKR1NBvejxLm@cluster0.xicwg.mongodb.net/Crawler_Info?retryWrites=true&w=majority",
+#            "username": "dbUser",
+#            "password": "UGLrtKR1NBvejxLm",
+#            "authMechanism": "SCRAM-SHA-1",
+#         }, 
+#     }
+# }
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
