@@ -9,5 +9,6 @@ namespace MLAPI.Services
     {
         Task<IEnumerable<CreateProperty>> GetCrawlerProperties();
         Task<HttpResponseMessage> StartCrawler();
+        Task<HttpResponseMessage> GetCrawlerStatistics();
     }
 }

@@ -14,7 +14,7 @@ namespace MLAPI.Services
         public CrawlerComService()
         {
             this.client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:8000/");
+            client.BaseAddress = new Uri("https://properties-crawler.herokuapp.com/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.Timeout = TimeSpan.FromMinutes(10);
@@ -22,7 +22,7 @@ namespace MLAPI.Services
 
         public async Task<IEnumerable<CreateProperty>> GetCrawlerProperties()
         {
-            HttpResponseMessage response = await client.GetAsync("api/properties/?format=json");
+            HttpResponseMessage response = await client.GetAsync("api/properties");
             if (response.IsSuccessStatusCode)
             {
                 var properties = await response.Content.ReadAsAsync<IEnumerable<CreateProperty>>();
@@ -39,6 +39,16 @@ namespace MLAPI.Services
                 return response;
             }
             else return null;
+        }
+
+        public async Task<HttpResponseMessage> GetCrawlerStatistics()
+        {
+            HttpResponseMessage response = await client.GetAsync("api/crawler/");
+            if (response.IsSuccessStatusCode)
+            {
+                return response;
+            }
+            return null;
         }
     }
 }

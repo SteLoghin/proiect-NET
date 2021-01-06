@@ -84,5 +84,19 @@ namespace MLAPI.Controllers
             return null;
         }
 
+        [HttpGet]
+        [Route("crawling-stats")]
+        public async Task<ActionResult> GetCrawlingStatistics()
+        {
+            var response = await crawler.GetCrawlerStatistics();
+            if (response == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+            else
+            {
+                return Ok(response.Content.ReadAsStringAsync().Result);
+            }
+        }
     }
 }
