@@ -125,7 +125,7 @@ def background_task():
         client.Crawler_Info.api_property.delete_many({})
         start_time_s1 = time.time() 
         properties = self.crawl_titirez()
-        crawl_results["titrez.ro"] = {
+        crawl_results["titrez"] = {
             "total_crawl_time": time.time() - start_time_s1,
             "length": len(properties),
             "last_crawl_datetime": f"{datetime.date(datetime.now())} {datetime.time(datetime.now())}"
@@ -133,9 +133,9 @@ def background_task():
         for p in properties:
             client.Crawler_Info.api_property.insert_one(p)
     except Exception as e:
-        crawl_results["titirez.ro"] = {
+        crawl_results["titirez"] = {
             "error": str(e.with_traceback), 
             "last_crawl_datetime": f"{datetime.date(datetime.now())} - {datetime.time(datetime.now())}"
         }
     finally:
-        client.Crawler_Info.crawler_info.insert_one(crawl_results)
+        client.Crawler_Info.crawler_info.insert_one(dict(crawl_results))
