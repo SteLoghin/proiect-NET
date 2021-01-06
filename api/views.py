@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import requests
 from bs4 import BeautifulSoup
-import re, time, json
+import re, time, json, os
 import pymongo
 from bson import json_util
 
@@ -14,7 +14,7 @@ from .models import Property, PropertyManager
 
 class Properties(View):
     def get(self, request):
-        client = pymongo.MongoClient(os.environ.get('MONGODB_URL')
+        client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
         properties = client.Crawler_Info.api_property.find({}, {"_id": 0, "id": 0})
         properties = list(properties)
         return JsonResponse(json.loads(json_util.dumps(properties)), safe=False)
