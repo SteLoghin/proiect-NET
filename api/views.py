@@ -26,7 +26,8 @@ class Crawler(View):
 
         crawl_results = {}
         try:
-            Property.objects.all().delete()
+            client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
+            client.Crawler_Info.api_property.delete_many({})
             start_time_s1 = time.time() 
             properties = self.crawl_titirez()
             crawl_results["titrez.ro"] = {
@@ -34,7 +35,7 @@ class Crawler(View):
                 "length": len(properties)
             }
             for p in properties:
-                p.save()
+                client.Crawler_Info.api_property.insert_one(p)
         except Exception as e:
             crawl_results["titirez.ro"] = {"error": str(e.with_traceback)}
             return JsonResponse(crawl_results, status=500)
@@ -117,7 +118,7 @@ class Crawler(View):
                 }
                 if dictionar['year'] != 0:
                     # adauga proprietatea la o lista
-                    properties.append(Property.objects.create_property(dict=dictionar))
+                    properties.append(dictionar)
 
                 del row_list[:]
                 del aux[:]
