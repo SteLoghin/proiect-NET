@@ -19,6 +19,7 @@ dj-database-url = "*"
 psycopg2 = "*"
 rq = "*"
 redis = "*"
+django-rq = "*"
 
 [requires]
 python_version = "3.7"

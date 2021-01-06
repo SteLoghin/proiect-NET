@@ -11,8 +11,7 @@ from bson import json_util
 
 from .models import Property, PropertyManager
 
-from worker import conn
-from rq import Queue
+import django_rq 
 
 class Properties(View):
     def get(self, request):
@@ -25,8 +24,7 @@ class Properties(View):
 class Crawler(View):
     def post(self, request):
         #TODO: decide if we should delete them or soft delete them and keep them
-        q = Queue(connection=conn)
-        q.enqueue(background_task)
+        django_rq.enqueue(background_task)
         return JsonResponse({"crawler_status": "started"}, status=200)
     
     def crawl_titirez(self):

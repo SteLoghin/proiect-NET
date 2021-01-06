@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    "django_rq"
 ]
 
 MIDDLEWARE = [
@@ -81,6 +82,8 @@ WSGI_APPLICATION = 'web_crawler.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
     }
 }
 
@@ -128,6 +131,11 @@ CORS_ORIGIN_ALLOW_ALL = True # development, in production this should be false, 
 #   'http://localhost:8000',
 # )
 
-DJANGO_SETTINGS_MODULE='settings rq worker high default low'
+RQ_QUEUES = {
+    'default': {
+        'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
+        'DEFAULT_TIMEOUT': 500,
+    }
+}
 
 django_heroku.settings(locals())
