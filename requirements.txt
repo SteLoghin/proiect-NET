@@ -7,4 +7,4 @@ django-cors-headers
 bs4
 requests
 ry
-django_rq
+django-rq
