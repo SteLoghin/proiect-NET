@@ -118,7 +118,7 @@ class Crawler(View):
                 }
                 if dictionar['year'] != 0:
                     # adauga proprietatea la o lista
-                    properties.append(dictionar)
+                    properties.append(dict(dictionar))
 
                 del row_list[:]
                 del aux[:]
