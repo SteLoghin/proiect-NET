@@ -1,9 +1,61 @@
+/* .admin-dashboard {
+    margin-left: 10px;
+} */
+body{
+    font-family: sans-serif;
+}
+
 .admin-dashboard{
     margin-left: 10px;
 }
 
 
-table{
+.admin-dashboard .dataForm form {
+    border: 10px solid red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* font-size: 15px; */
+    /* border: 10px solid red; */
+}
+
+.admin-dashboard .dataForm form div,
+.admin-dashboard .dataForm form div button {
+    padding: 13px;
+}
+
+input{
+    width: 8vw;
+}
+
+.post-button {
+    width: 5vw;
+    height: 50px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    margin-top: 20px;
+}
+
+.post-button:hover {
+    background-color: #3e8e41
+}
+
+.post-button:active {
+    background-color: #3e8e41;
+    transform: translateY(4px);
+}
+
+.post-button:focus{
+    outline: none !important;
+}
+
+/* table{
     margin: 0 auto;
 }
 
@@ -16,4 +68,4 @@ th, td,tr {
 
 tr th{
     padding: 10px;
-}
+} */
