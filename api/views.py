@@ -1,9 +1,7 @@
 from django.http import JsonResponse, HttpResponse
 from django.views import View
-from rest_framework.decorators import api_view
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-# from rest_framework import viewsets
 from django.core import serializers
 import requests
 from bs4 import BeautifulSoup
@@ -11,18 +9,13 @@ import re, time, json
 import pymongo
 from bson import json_util
 
-from .serializers import PropertySerializer
 from .models import Property, PropertyManager
 
-# class PropertyViewSet(viewsets.ModelViewSet):
-#     queryset = Property.objects.all()
-#     serializer_class = PropertySerializer
 
 class Properties(View):
     def get(self, request):
-        client = pymongo.MongoClient("mongodb+srv://dbUser:UGLrtKR1NBvejxLm@cluster0.xicwg.mongodb.net/Crawler_Info?retryWrites=true&w=majority")
-        properties = client.Crawler_Info.api_property.find()
-        # properties = Property.objects.all().values()
+        client = pymongo.MongoClient(os.environ.get('MONGODB_URL')
+        properties = client.Crawler_Info.api_property.find({}, {"_id": 0, "id": 0})
         properties = list(properties)
         return JsonResponse(json.loads(json_util.dumps(properties)), safe=False)
 

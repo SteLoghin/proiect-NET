@@ -1,11 +1,8 @@
 django
 gunicorn
 django-heroku
-djangorestframework
 dnspython
 djongo
 django-cors-headers
 bs4
 requests
-psycopg2
-dj_database_url
