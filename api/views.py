@@ -7,7 +7,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import requests
 from bs4 import BeautifulSoup
-import re, time
+import re, time, json
+import pymongo
+from bson import json_util
 
 from .serializers import PropertySerializer
 from .models import Property, PropertyManager
@@ -18,9 +20,11 @@ from .models import Property, PropertyManager
 
 class Properties(View):
     def get(self, request):
-        properties = Property.objects.all().values()
+        client = pymongo.MongoClient("mongodb+srv://dbUser:UGLrtKR1NBvejxLm@cluster0.xicwg.mongodb.net/Crawler_Info?retryWrites=true&w=majority")
+        properties = client.Crawler_Info.api_property.find()
+        # properties = Property.objects.all().values()
         properties = list(properties)
-        return JsonResponse(properties, safe=False)
+        return JsonResponse(json.loads(json_util.dumps(properties)), safe=False)
 
 @method_decorator(csrf_exempt, name='dispatch')
 class Crawler(View):
