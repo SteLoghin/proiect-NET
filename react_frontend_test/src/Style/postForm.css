@@ -6,3 +6,7 @@
 .dataForm form{
     text-align: center;
 }
+
+#links_show_list{
+   list-style: none; 
+}
