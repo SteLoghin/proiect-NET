@@ -123,6 +123,8 @@ def background_task():
             "length": len(properties)
         }
         for p in properties:
+            print(p["area"])
             client.Crawler_Info.api_property.insert_one(p)
+        print(crawl_results)
     except Exception as e:
         crawl_results["titirez.ro"] = {"error": str(e.with_traceback)}
