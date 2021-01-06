@@ -5,7 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import requests
 from bs4 import BeautifulSoup
-import re, time, json, os, datetime
+import re, time, json, os
+from datetime import datetime
 import pymongo
 from bson import json_util
 
