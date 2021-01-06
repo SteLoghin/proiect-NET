@@ -1,53 +1,175 @@
 import React, { Component } from "react";
 import "../Style/AdminContent.css";
-import axios from 'axios';
+import axios from "axios";
 
 class AdminContent extends Component {
-	
-	submitHandler = e => {
-		e.preventDefault()
-		console.log(this.state)
-		axios
-		.get('http://localhost:5000/api/v1/admin/properties')
-			// .get('http://dotnethouse.azurewebsites.net/api/v1/predictions',this.state)
-			.then(response => {
-				console.log("daaa");
-				console.log(response)
-				const data=JSON.parse(JSON.stringify(response))
-				// console.log(typeof(data.data));
-				console.log(data)
-				document.getElementById("raspuns-admin").innerHTML=(Math.round(data.data * 100) / 100).toFixed(2);
-			})
-			.catch(error => {
-				console.log(error)
-			})
-	}
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      Rooms: 0,
+      Area: 0,
+      Floor: 0,
+      Year: 0,
+      Bathrooms: 0,
+      Kitchens: "",
+      Link: "",
+      Zone: "",
+      Price: 0,
+    };
+  }
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  submitHandler = (e) => {
+    e.preventDefault();
+    console.log(this.state);
+    axios
+      .post("http://localhost:5000/api/v1/properties", this.state)
+      .then(console.log("da"));
+  };
   render() {
+    const {
+      rooms,
+      area,
+      floor,
+      year,
+      bathrooms,
+      kitchens,
+      link,
+      zone,
+      price,
+    } = this.state;
     return (
       <div className="admin-dashboard">
         <h1>(WIP)</h1>
-		<h2> Ati intrat pe dashboard-ul de admin.</h2>{" "}
-		{/* <button onClick={this.submitHandler}>Apasa</button>
-		<p id="raspuns-admin"></p> */}
-        <table id="houses-data">
-			<thead>
-				<tr>
-					<th>Zone</th>
-					<th>Area</th>
-					<th>Rooms</th>
-					<th>Bathrooms</th>
-					<th>Parking Lots</th>
-					<th>Floor</th>
-					<th>Animal</th>
-					<th>Furnished</th>
-				</tr>	
-			</thead>
-			<tbody>
-			
-			</tbody>	
-		</table>{" "}
-		
-	  </div>
+        <h2> Ati intrat pe dashboard-ul de admin.</h2>{" "}
+        <h2>Introduceti o noua locuinta:</h2>
+        <div className="dataForm">
+          <form onSubmit={this.submitHandler}>
+            <div>
+              <label>
+                Rooms
+                <br />
+                <input
+                  type="number"
+                  name="Rooms"
+                  id="Rooms"
+                  value={rooms}
+                  onChange={this.changeHandler}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Area
+                <br />
+                <input
+                  type="number"
+                  name="Area"
+                  value={area}
+                  onChange={this.changeHandler}
+                  id="lotConfig"
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Floor <br />
+                <input
+                  type="number"
+                  name="Floor"
+                  id="floor"
+                  value={floor}
+                  onChange={this.changeHandler}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Bathrooms
+                <br />
+                <input
+                  type="number"
+                  name="Bathrooms"
+                  value={bathrooms}
+                  onChange={this.changeHandler}
+                  id="Bathrooms"
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Year
+                <br />
+                <input
+                  type="number"
+                  name="Year"
+                  id="Year"
+                  value={year}
+                  onChange={this.changeHandler}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Kitchens
+                <br />
+                <input
+                  type="text"
+                  name="Kitchens"
+                  id="kitchens"
+                  value={kitchens}
+                  onChange={this.changeHandler}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Link
+                <br />
+                <input
+                  type="text"
+				  id="Link"
+				  name="Link"
+                  value={link}
+                  onChange={this.changeHandler}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Zone
+                <br />
+                <input
+                  type="text"
+                  name="Zone"
+                  id="Zone"
+                  value={zone}
+                  onChange={this.changeHandler}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Price
+                <br />
+                <input
+                  type="number"
+                  name="Price"
+                  id="Price"
+                  value={price}
+                  onChange={this.changeHandler}
+                />
+              </label>
+            </div>
+            <button className="post-button" type="submit">
+              Adauga
+            </button>
+          </form>
+        </div>
+      </div>
     );
   }
 }

@@ -9,15 +9,14 @@ class AdminPage extends Component {
 		super(props)
 
 		this.state = {
-			Zone:'Copou',
-			Area:35,
-			Rooms:23,
-			Bathrooms:4,
-			ParkingLots:5,
-			Floor:4,
-			Animal:3,
-			Furnished:'yes'
-		}
+			Rooms: 2,
+			Area: 2,
+			Floor: 2,
+			Year: 2,
+			Bathrooms: 2,
+			Kitchens: "Yes",
+			Zone: "Copou",
+		  };
 	}
 
     changeHandler = e => {
