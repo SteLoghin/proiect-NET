@@ -27,22 +27,6 @@ class Crawler(View):
         #TODO: decide if we should delete them or soft delete them and keep them
         q = Queue(connection=conn)
         q.enqueue(background_task)
-        # crawl_results = {}
-        # try:
-        #     client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
-        #     client.Crawler_Info.api_property.delete_many({})
-        #     start_time_s1 = time.time() 
-        #     properties = self.crawl_titirez()
-        #     crawl_results["titrez.ro"] = {
-        #         "total_crawl_time": time.time() - start_time_s1,
-        #         "length": len(properties)
-        #     }
-        #     for p in properties:
-        #         client.Crawler_Info.api_property.insert_one(p)
-        # except Exception as e:
-        #     crawl_results["titirez.ro"] = {"error": str(e.with_traceback)}
-        #     return JsonResponse(crawl_results, status=500)
-        
         return JsonResponse({"crawler_status": "started"}, status=200)
     
     def crawl_titirez(self):
