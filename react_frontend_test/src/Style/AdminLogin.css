@@ -98,7 +98,8 @@
     transform: scale(0.95);
   }
   
-  .inpt-field[type=text] {
+  .inpt-field[type=text],
+  .inpt-field[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;

@@ -57,7 +57,7 @@ class AdminPage extends Component {
 
                 <form onSubmit={this.submitHandler}>
                     <input type="text" id="login" className="inpt-field" name="login" placeholder="login" />
-                    <input type="text" id="password" className="inpt-field" name="login" placeholder="password" />
+                    <input type="password" id="password" className="inpt-field" name="login" placeholder="password" />
                     <input type="submit" className="inpt-field inpt-button" value="LogIn"/>
                 </form>
 
