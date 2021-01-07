@@ -8,10 +8,13 @@
    list-style: none; 
 }
 
+.body_and_links {
+    margin-top: 2em;
+}
+
 .body_page{
     width: 100%;
     height: 100%;
-    border: 3px solid black;
     display: flex;
     justify-content: center;
 }
@@ -21,13 +24,11 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    border: 2px solid red;
 }
 
 .form_image {
     height: 35em;
     width: 40%;
-    border: 2px solid green;
     background-image: url("../Images/house_background.png");
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
@@ -41,13 +42,19 @@
 
 .form_input {
     width: 100%;
-    background: #e6e6e6;
+    border: 3px solid #ccc;
     font-family: Montserrat-Bold;
     font-size: 15px;
     line-height: 1.5;
-    color: #666666;
-    border-radius: 25px;
+    border-radius: 10px;
     padding: 6px 15px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+.form_input:focus {
+    border: 3px solid #555;
 }
 
 .form_image {
@@ -67,3 +74,29 @@
     display: flex; 
     align-items: center;
 }
+
+.prediction_buton {
+    background-color: #4c3c3c;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    padding: 13px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+
+@media screen and (max-width: 875px) {
+    .centered_content {
+        flex-direction: column-reverse;
+    }
+
+    .form_image {
+        width: 100%;
+        margin-top: 2em;
+    }
+
+  }

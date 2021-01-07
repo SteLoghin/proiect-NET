@@ -56,6 +56,8 @@ class PostForm extends Component {
         params: {
           rooms: this.state.Rooms,
           bathrooms: this.state.Bathrooms,
+          zone: this.state.Zone
+
         },
       })
       .then((response) => {
@@ -98,6 +100,8 @@ class PostForm extends Component {
   render() {
     const { rooms, area, floor, year, bathrooms, kitchens, zone } = this.state;
     return (
+      <div className="body_and_links">
+
       <div className="body_page">
       <div className="centered_content">
 
@@ -126,7 +130,7 @@ class PostForm extends Component {
           </div>
           <div>
             <label>
-              Area
+              Area - cubic meters
               <br />
               <input className="form_input"
                 type="number"
@@ -190,7 +194,7 @@ class PostForm extends Component {
           </div>
           <div>
             <label>
-              Zone
+              Type "Zona" + name of the zone
               <br />
               <input className="form_input"
                 type="text"
@@ -202,17 +206,18 @@ class PostForm extends Component {
             </label>
           </div>
 
-          <button type="submit">Get a price!</button>
+          <button type="submit" class="prediction_buton">Get a price!</button>
           
 
           
         </form>
       </div>
       </div>
-      {/*<p className="links"></p>
-      <ul id="links_show_list"></ul> */}
-      </div>
       
+      </div>
+        <p className="links"></p>
+        <ul id="links_show_list"></ul> 
+      </div>
     );
   }
 }
