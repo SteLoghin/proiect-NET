@@ -36,21 +36,43 @@ class AdminContent extends Component {
       .get("http://localhost:5000/api/v1/admin/crawling-stats")
       .then((response) => {
         console.log(response);
+        showStats.textContent = "";
         // TODO posibil, in caz ca o sa mai faca crawl pe alte site-uri, voi modifica aici cu o functie ca sa nu para ca e "hardcodat" titirez din json
         const data = JSON.parse(JSON.stringify(response.data[0].titrez));
-        console.log("data=",data);
-        const numberOfNewProperties=data.length;
-        const totalCrawlTime=JSON.stringify(data.total_crawl_time).split(".")[0];
-        const crawlDate=data.last_crawl_datetime.split(" ");
-        const lastCrawlHour=crawlDate[1].split(".")[0]
-        showStats.textContent=`Ultimul crawl pe site-ul titirez.ro a durat ${totalCrawlTime} secunde, a avut loc in data de ${crawlDate[0]} la ora ${lastCrawlHour} si au fost adaugate ${numberOfNewProperties} proprietati noi in baza de date.`;
-        
-        
+        console.log("data=", data);
+        const numberOfNewProperties = data.length;
+        const totalCrawlTime = JSON.stringify(data.total_crawl_time).split(
+          "."
+        )[0];
+        const crawlDate = data.last_crawl_datetime.split(" ");
+        const lastCrawlHour = crawlDate[1].split(".")[0];
+        showStats.textContent = `Ultimul crawl pe site-ul titirez.ro a durat ${totalCrawlTime} secunde, a avut loc in data de ${crawlDate[0]} la ora ${lastCrawlHour} si au fost adaugate ${numberOfNewProperties} proprietati noi in baza de date.`;
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  startCrawlerRequest = () => {
+    const crawlerStart=document.getElementById("crawler-start");
+    console.log("start crawler");
+    axios.post("http://localhost:5000/api/v1/admin/start-crawler")
+    .then((response)=>{
+      crawlerStart.textContent="Crawlerul a pornit de la prima cheie";
+    }).catch((error)=>{
+      crawlerStart.textContent="Mai baga o cheie";
+    });
+  };
+
+  renewTrainingDataRequest=()=>{
+    const text=document.getElementById("renew-training-data");
+    axios.post("http://localhost:5000/api/v1/admin/renew-training-data")
+    .then((response)=>{
+      text.textContent="Datele au fost innoite cu succes!(Datele noi de la crawler au fost adaugate in baza de date pentru antrenarea modelului.";
+    }).catch((error)=>{
+      text.textContent="Eroare de la server, incercati mai tarziu.";
+    });
+  }
 
   submitHandler = (e) => {
     e.preventDefault();
@@ -210,13 +232,29 @@ class AdminContent extends Component {
             </button>
             <p id="added"></p>
           </form>
-          <button
-            className="get-button-crawler"
-            onClick={this.displayCrawlerStats}
-          >
-            Afiseaza statistici despre crawler
-          </button>
-          <p id="crawler-stats"></p>
+          <div class="crawler-operations">
+            <div className="crawler">
+              <button
+                className="get-button-crawler"
+                onClick={this.displayCrawlerStats}
+              >
+                Afiseaza statistici despre crawler
+              </button>
+              <p id="crawler-stats"></p>
+            </div>
+            <div className="crawler">
+              <button onClick={this.startCrawlerRequest}>
+                Baga o cheie la crawler
+              </button>
+              <p id="crawler-start"></p>
+            </div>
+            <div className="crawler">
+              <button onClick={this.renewTrainingDataRequest}>
+                Innoieste datele de antrenament
+              </button>
+              <p id="renew-training-data"></p>
+            </div>
+          </div>
         </div>
       </div>
     );

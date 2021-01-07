@@ -55,6 +55,10 @@ input{
     outline: none !important;
 }
 
+.crawler-operations{
+    border:10px solid blue;
+}
+
 /* #added{
     border:10px solid black;
 } */
