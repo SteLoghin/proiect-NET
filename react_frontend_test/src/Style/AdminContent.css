@@ -11,7 +11,7 @@ body{
 
 
 .admin-dashboard .dataForm form {
-    border: 10px solid red;
+    /* border: 10px solid red; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -55,25 +55,29 @@ input{
     outline: none !important;
 }
 
-.crawler-operations{
+/* .crawler-operations{
     border:10px solid blue;
-}
+} */
 
 /* #added{
     border:10px solid black;
 } */
 
-/* table{
+table{
     margin: 0 auto;
 }
 
 
 th, td,tr {
-    border: 5px solid black;
+    border: 3px solid black;
     font-size: larger;
+}
+
+td,tr{
+    font-size: 15px;
 }
 
 
 tr th{
-    padding: 10px;
-} */
+    padding: 5px;
+}

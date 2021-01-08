@@ -65,9 +65,10 @@ class PostForm extends Component {
         const ul = document.getElementById("links_show_list");
         console.log(response);
         const linkData = JSON.parse(JSON.stringify(response));
-        const linksList = linkData.data.map(({ link }) => link);
+        let linksList = linkData.data.map(({ link }) => link);
         console.log("linkuri:", linksList, linksList.length);
-        if (linksList.length) {
+        linksList=new Set(linksList);
+        if (linksList.size) {
           pLinks.textContent = "";
           const ulNew = document.createElement("ul");
           ulNew.id = "links_show_list";
@@ -206,7 +207,7 @@ class PostForm extends Component {
             </label>
           </div>
 
-          <button type="submit" class="prediction_buton">Get a price!</button>
+          <button type="submit" className="prediction_buton">Get a price!</button>
           
 
           
