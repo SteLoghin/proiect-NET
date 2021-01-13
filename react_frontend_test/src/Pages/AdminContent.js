@@ -82,6 +82,41 @@ class AdminContent extends Component {
       });
   };
 
+  retrainModel = () => {
+    const text = document.getElementById("retrain-model-stats");
+    const admin = "admin";
+    axios
+      .post(
+        "http://localhost:5000/api/v1/admin/retrain-model",
+        '"' + admin + '"',
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then((response) => {
+        let { data } = response;
+        console.log(data.includes("*"));
+        data = data.replaceAll("*", "").replaceAll("-", "");
+        text.textContent = `Statistici despre reantrenarea modelului: ${data}`;
+      })
+      .catch((err) => {
+        text.textContent = err;
+      });
+  };
+
+  deleteProperty = (propertyId) => {
+    console.log(`proprietatea cu id-ul: ${propertyId} va fi stearsa din bd`);
+    const url = "http://localhost:5000/api/v1/properties/" + propertyId;
+    axios
+      .delete(url)
+      .then((response) => {
+        console.log("sters" + propertyId);
+        const deleteRow = document.getElementById(propertyId);
+        deleteRow.remove();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   fetchProperties = () => {
     axios
       .get("http://localhost:5000/api/properties")
@@ -100,6 +135,7 @@ class AdminContent extends Component {
           atribut.appendChild(document.createTextNode(keys[i]));
           firstRow.appendChild(atribut);
         }
+
         tableHead.appendChild(firstRow);
         propertiesTable.appendChild(tableHead);
         // const tableBody=document.createElement("tbody");
@@ -107,19 +143,28 @@ class AdminContent extends Component {
         // cream elementele din tabel
         propertiesList.forEach((property) => {
           const tr = document.createElement("tr");
-          // for(let [key,value] of Object.entries(property)){
-          //   if(key==="id"){
-          //     continue;
-          //   }
-          //   const atribut=document.createElement("td");
-          //   atribut.appendChild(document.createTextNode(property[key]));
-          // }
+          tr.setAttribute("id", property[keys[0]]);
+          
           for (let i = 1; i < keys.length; i++) {
             const atribut = document.createElement("td");
             // console.log("----------------", property[keys[i]]);
             atribut.appendChild(document.createTextNode(property[keys[i]]));
             tr.appendChild(atribut);
           }
+          const deleteBtn = document.createElement("button");
+          deleteBtn.addEventListener("click", () =>
+            this.deleteProperty(property[keys[0]])
+          );
+          const editBtn=document.createElement("button");
+          editBtn.addEventListener("click",()=>{
+            this.updateProperty(property[keys[0]])
+          });
+          editBtn.appendChild(document.createTextNode("editama"));
+          // console.log(property[keys[0]]);
+          deleteBtn.appendChild(document.createTextNode("deletema"));
+          // TODO sa incerc sa fac edit btn
+          tr.appendChild(deleteBtn);
+          tr.appendChild(editBtn);
           propertiesTable.appendChild(tr);
           document.querySelector(".fetch-button").style.display = "none";
         });
@@ -153,6 +198,7 @@ class AdminContent extends Component {
     return (
       <div className="admin-dashboard">
         <h1>(WIP)</h1>
+        <h2>TODO posibil, daca tabelul e deja creat dinamic si adminu da post la date, sa pun datele noi in tabel pe loc in mod dinamic</h2>
         <h2> Ati intrat pe dashboard-ul de admin.</h2>{" "}
         <h2>Introduceti o noua locuinta:</h2>
         <div className="dataForm">
@@ -308,6 +354,12 @@ class AdminContent extends Component {
                 Innoieste datele de antrenament
               </button>
               <p id="renew-training-data"></p>
+            </div>
+            <div className="crawler">
+              <button onClick={this.retrainModel}>
+                Reantreneaza modelul pentru predictie
+              </button>
+              <p id="retrain-model-stats"></p>
             </div>
             <div id="get-properties">
               <button onClick={this.fetchProperties} className="fetch-button">
