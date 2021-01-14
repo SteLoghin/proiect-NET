@@ -32,6 +32,7 @@ class Crawler(View):
         properties = client.Crawler_Info.api_property.find({}, {"_id": 0, "id": 0})
         properties = list(properties)
         zones = sorted([str(x) for x in set(map(lambda x: x["zone"], properties))])
+        zones = list(filter(lambda x: len(x) != 1 and x != "Baza ", zones))
         floors = sorted([int(x) for x in set(map(lambda x: x["floor"], properties))])
         info = client.Crawler_Info.crawler_info.find()
         info = list(info)
