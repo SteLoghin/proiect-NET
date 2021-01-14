@@ -24,7 +24,7 @@ namespace MLAPI.Tests.Controllers
         public AdminCommandsControllerTests()
         {
             _mockMediatr = new Mock<IMediator>();
-            _controller = new AdminCommandsController(_mockMediatr.Object);
+            _controller = new AdminController(_mockMediatr.Object);
         }
 
         [Fact]

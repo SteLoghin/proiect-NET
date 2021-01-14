@@ -28,7 +28,7 @@ namespace MLAPI.Tests.Business
                 Area = 90,
                 Rooms = 3,
                 Bathrooms = 1,
-                Kitchens = "2",
+                Kitchens = 2,
                 Floor = 3,
                 Link = "1",
                 Price = 280
