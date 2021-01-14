@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import '../Style/AdminLogin.css';
-import axios from 'axios';
 require('dotenv').config('../../.env');
-console.log(process.env)
 // console.log(process.env)
 // import { NavLink } from 'react-router-dom';
 
@@ -12,19 +10,14 @@ class AdminPage extends Component {
 		super(props)
 
 		this.state = {
-			Rooms: 2,
-			Area: 2,
-			Floor: 2,
-			Year: 2,
-			Bathrooms: 2,
-			Kitchens: "Yes",
-			Zone: "Copou",
-		  };
+			
+		}
 	}
 
     changeHandler = e => {
 		this.setState({ [e.target.name]: e.target.value })
-    }
+	}
+	
     
     submitHandler = e => {
 		e.preventDefault()
@@ -36,21 +29,6 @@ class AdminPage extends Component {
 		}else{
 			alert("Invalid username or password")
 		}
-		// axios
-		// .get('http://localhost:5000/api/v1/predictions')
-		// 	// .get('http://dotnethouse.azurewebsites.net/api/v1/predictions',this.state)
-		// 	.then(response => {
-		// 		console.log(response.status)
-		// 		const data=JSON.parse(JSON.stringify(response))
-		// 		console.log(data)
-        //         if(response.status === 200){
-        //             console.log("here");
-        //             this.props.history.push("/admin-dashboard")
-        //         }
-		// 	})
-		// 	.catch(error => {
-		// 		console.log(error)
-		// 	})
 	}
 
 

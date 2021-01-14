@@ -8,6 +8,7 @@ class AdminContent extends Component {
     super(props);
 
     this.state = {
+      id: {},
       Rooms: 0,
       Area: 0,
       Floor: 0,
@@ -117,6 +118,96 @@ class AdminContent extends Component {
       });
   };
 
+  updateProperty = (propertyId) => {
+    if (this.state.id[propertyId] === true) {
+      console.log("IESI IN PIZDA MATI");
+      return;
+    }
+    console.log("intru in updateProperty nu in a doua functie");
+    console.log(`proprietatea cu id-ul: ${propertyId}`);
+    const propertyAttributes = document.getElementById(propertyId).children;
+    let attributesName = document.getElementById("table-head").firstChild
+      .children;
+
+    const propertyToUpdate = {};
+    // const rowValues=[];
+    for (let i = 0; i < attributesName.length; i++) {
+      propertyToUpdate[attributesName[i].textContent] =
+        propertyAttributes[i].textContent;
+      // console.log("############", propertyAttributes[i].innerHTML);
+      // e numar adica
+      // console.log(`1:${propertyAttributes[i].textContent}`);
+      // rowValues.push(propertyAttributes[i].textContent);
+      if (attributesName[i].textContent === "zone") {
+        const zona = `"${propertyAttributes[i].textContent}"`;
+        const inner = `<input type='text' value=${zona} name=${zona}>`;
+        propertyAttributes[i].innerHTML = "";
+        propertyAttributes[i].innerHTML = inner;
+        continue;
+      }
+      if (!isNaN(propertyAttributes[i].textContent)) {
+        // console.log("INTRU VREODATA AICI???");
+        // nu cred ca am nevoie de onchange pentru ca aici creez obiectul si il dau asa prin post
+        const inner = `<input type='number' value=${propertyAttributes[i].textContent} name=${propertyAttributes[i].textContent}>`;
+        propertyAttributes[i].innerHTML = "";
+        propertyAttributes[i].innerHTML = inner;
+      } else {
+        const inner = `<input type='text' value=${propertyAttributes[i].textContent} name=${propertyAttributes[i].textContent}>`;
+        propertyAttributes[i].innerHTML = "";
+        propertyAttributes[i].innerHTML = inner;
+      }
+    }
+    // console.log(`atributele sunt:${attributes}`);
+    // console.log(propertyToUpdate);
+
+    const editBtn = document.getElementById("editBtn-" + propertyId);
+
+    // id=id.split("-")[1]
+    // editBtn.removeEventListener("click",this.updateProperty);
+    // this.state.id[propertyId]="true";
+    this.setState((prevState) => {
+      let id = Object.assign({}, prevState.id);
+      id[propertyId] = true;
+      return { id };
+    });
+    console.log("::::::::::::::::::::::", this.state.id);
+    editBtn.addEventListener("click", () => {
+      this.putRequest("editBtn-" + propertyId);
+    });
+    // console.log(`row-values:${rowValues}`)
+    editBtn.textContent = "updateeeeee";
+  };
+
+  putRequest = (btnID) => {
+    console.log("INTRU IN PULAM EA AIAIC");
+    let propertyID = btnID.split("-")[1];
+    const updatedRow = document.getElementById(propertyID).children;
+    console.log(propertyID);
+    const propertyToUpdate = {};
+    console.log("row:", updatedRow);
+    console.log("444------", updatedRow[0].firstChild.value);
+    // const propertyAttributes = document.getElementById(propertyId).children;
+    let attributesName = document.getElementById("table-head").firstChild
+      .children;
+    propertyToUpdate["id"]=propertyID;
+    for (let i = 0; i < attributesName.length; i++) {
+      propertyToUpdate[attributesName[i].textContent] =
+        updatedRow[i].firstChild.value;
+    }
+    console.log(propertyToUpdate);
+    const url = "http://localhost:5000/api/v1/properties/"+propertyID;
+    axios
+      .put(url, propertyToUpdate)
+      .then((response) => {
+        console.log("O MEEERS");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    //TODO sa modifc innerhtml
+  };
+
   fetchProperties = () => {
     axios
       .get("http://localhost:5000/api/properties")
@@ -127,6 +218,7 @@ class AdminContent extends Component {
         const propertiesTable = document.createElement("table");
         tableParent.appendChild(propertiesTable);
         const tableHead = document.createElement("thead");
+        tableHead.setAttribute("id", "table-head");
         const firstRow = document.createElement("tr");
         let keys = Object.keys(propertiesList[0]);
         // console.log(keys);
@@ -144,7 +236,7 @@ class AdminContent extends Component {
         propertiesList.forEach((property) => {
           const tr = document.createElement("tr");
           tr.setAttribute("id", property[keys[0]]);
-          
+
           for (let i = 1; i < keys.length; i++) {
             const atribut = document.createElement("td");
             // console.log("----------------", property[keys[i]]);
@@ -152,12 +244,14 @@ class AdminContent extends Component {
             tr.appendChild(atribut);
           }
           const deleteBtn = document.createElement("button");
+          // deleteBtn.setAttribute("id","btn"+property[keys[0]])
           deleteBtn.addEventListener("click", () =>
             this.deleteProperty(property[keys[0]])
           );
-          const editBtn=document.createElement("button");
-          editBtn.addEventListener("click",()=>{
-            this.updateProperty(property[keys[0]])
+          const editBtn = document.createElement("button");
+          editBtn.setAttribute("id", "editBtn-" + property[keys[0]]);
+          editBtn.addEventListener("click", () => {
+            this.updateProperty(property[keys[0]]);
           });
           editBtn.appendChild(document.createTextNode("editama"));
           // console.log(property[keys[0]]);
@@ -198,7 +292,10 @@ class AdminContent extends Component {
     return (
       <div className="admin-dashboard">
         <h1>(WIP)</h1>
-        <h2>TODO posibil, daca tabelul e deja creat dinamic si adminu da post la date, sa pun datele noi in tabel pe loc in mod dinamic</h2>
+        <h2>
+          TODO posibil, daca tabelul e deja creat dinamic si adminu da post la
+          date, sa pun datele noi in tabel pe loc in mod dinamic
+        </h2>
         <h2> Ati intrat pe dashboard-ul de admin.</h2>{" "}
         <h2>Introduceti o noua locuinta:</h2>
         <div className="dataForm">
