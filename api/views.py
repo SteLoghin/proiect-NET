@@ -95,6 +95,18 @@ def crawl_titirez():
                         nr_bucatarii = nr_bucatarii.group(0)
                     else:
                         nr_bucatarii = 0
+            zona = cauta_zona.split(' ', 1)
+            if len(zona) == 2:
+                zona = zona[1]
+            else:
+                zona = zona[0]
+            if nr_bucatarii == 0:
+                nr_bucatarii = 1
+            if nr_bai == 0:
+                nr_bai = 1
+            if len(zona) == 0:
+                zona = "Iasi"
+            
             dictionar = {
                 "rooms": nr_camere.group(0),
                 "area": suprafata.group(0),
@@ -103,7 +115,7 @@ def crawl_titirez():
                 "bathrooms": nr_bai,
                 "kitchens": nr_bucatarii,
                 "link": k,
-                "zone": cauta_zona,
+                "zone": zona,
                 "price": cauta_pret,
             }
             if dictionar['year'] != 0:
@@ -115,6 +127,7 @@ def crawl_titirez():
             dictionar.clear()
     properties = [dict(t) for t in {tuple(sorted(prop.items())) for prop in properties}]
     return properties
+
 
 def crawl_imobiliare():
 
@@ -135,6 +148,11 @@ def crawl_imobiliare():
             page2_soup = BeautifulSoup(page2.content, 'html.parser')
             zone = page2_soup.find("div", class_="header_info")
             zone = zone.find('div', class_="col-lg-9 col-md-9 col-sm-9 col-xs-12").text.replace("ă", "a").replace("ş", "s")
+            if zone == "Bd. Independetei":
+                zone = "Bulevardul Independentei"
+            if zone == "Cug":
+                zone = "CUG"
+            
             pret = page2_soup.find("div", class_="pret first blue").contents[1].rstrip(' ')
             print(pret)
             try:
