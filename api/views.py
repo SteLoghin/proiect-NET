@@ -133,8 +133,6 @@ def crawl_imobiliare():
     nr_iteratii = sorted(nr_iteratii, reverse=True)[0]
     properties = list()
     for j in range(1, nr_iteratii):
-        if j == 2:
-            break
         page = requests.get('https://www.imobiliare.ro/inchirieri-apartamente/iasi?id=230264596&pagina=' + str(j))
         page_soup = BeautifulSoup(page.content, 'html.parser')
         links = page_soup.find_all('a', href=True, class_='detalii-proprietate desktop')
