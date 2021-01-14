@@ -295,7 +295,7 @@ class AdminContent extends Component {
       
         
         <h2>Add a new property to the database:</h2>
-        <div className="dataForm">
+        <div className="dataFormNEW">
           <form onSubmit={this.submitHandler}>
             <div>
               <label>
