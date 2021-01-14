@@ -180,7 +180,8 @@ def crawl_imobiliare():
             
             try:
                 nr_camere = re.search('Nr. camere:([0-9]+)', details).group(1)
-                suprafata = re.search('Suprafaţă utilă:([0-9,]+) mp', details).group(1)
+                suprafata = re.search('Suprafaţă utilă:([0-9,.]+) mp', details).group(1)
+                suprafata = suprafata.replace(",", ".")
                 etaj = re.search('Etaj ([0-9]+)', details)
                 if etaj:
                     etaj = etaj.group(1)
