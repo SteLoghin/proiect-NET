@@ -8,6 +8,7 @@
     top:0;
 }
 
+
 .main-navigation__item ul{
     display:flex;
     flex-direction: row;
@@ -16,7 +17,8 @@
 }
 
 .main-navigation__item ul li{
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .main-navigation__item ul li a{
@@ -33,6 +35,8 @@
     font-size: 12px;
     margin-left: 1.5vw;
 }
+
+
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 

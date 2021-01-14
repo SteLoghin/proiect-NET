@@ -62,38 +62,51 @@ class PostForm extends Component {
       })
       .then((response) => {
         const pLinks = document.querySelector(".links");
-        const ul = document.getElementById("links_show_list");
+        const divLinks = document.getElementById("links_show_list");
         console.log(response);
         const linkData = JSON.parse(JSON.stringify(response));
         let linksList = linkData.data.map(({ link }) => link);
         console.log("linkuri:", linksList, linksList.length);
+
         linksList=new Set(linksList);
+
         if (linksList.size) {
           pLinks.textContent = "";
-          const ulNew = document.createElement("ul");
-          ulNew.id = "links_show_list";
-          ulNew.textContent = "Links:";
+          const divNew = document.createElement("div");
+          divNew.id = "links_show_list";
+
+          const pElement = document.getElementById("response");
+          pElement.innerHTML="We found some links that match your desired house/apartment";
+
+          //divNew.textContent = "We found some links to houses/apartments that match your prefferences. The price may vary.";
+          let links_counter = 1
           linksList.forEach((element) => {
-            const li = document.createElement("li");
+            const divLinksFinal = document.createElement("div");
             const a = document.createElement("a");
             a.appendChild(document.createTextNode(element));
             a.href = element;
+            a.innerHTML = "Link " + links_counter;
+            ++links_counter;
             a.target = "_blank";
-            ulNew.appendChild(li);
-            li.appendChild(a);
+            divNew.appendChild(divLinksFinal);
+
+            const divLinksWithTextInside = document.createElement("div");
+            divLinksFinal.appendChild(divLinksWithTextInside);
+
+            divLinksWithTextInside.appendChild(a);
           });
-          ul.parentElement.replaceChild(ulNew, ul);
+          divLinks.parentElement.replaceChild(divNew, divLinks);
         }
       })
 
       .catch((error) => {
         const pLinks = document.querySelector(".links");
-        const ul = document.getElementById("links_show_list");
-        while(ul.lastElementChild){
-			ul.removeChild(ul.lastElementChild);
+        const divLinks = document.getElementById("links_show_list");
+        while(divLinks.lastElementChild){
+			divLinks.removeChild(divLinks.lastElementChild);
 		}
-		pLinks.textContent = "Nu am gasit link-uri";
-		ul.style.display="none";
+		pLinks.textContent = "Unfortunately we could not find any web link that matches your desired property yet.";
+		divLinks.style.display="none";
         console.log(error);
       });
   };
@@ -195,7 +208,7 @@ class PostForm extends Component {
           </div>
           <div>
             <label>
-              Type "Zona" + name of the zone
+              Name of the zone
               <br />
               <input className="form_input"
                 type="text"
@@ -216,8 +229,8 @@ class PostForm extends Component {
       </div>
       
       </div>
-        <p className="links"></p>
-        <ul id="links_show_list"></ul> 
+        <p className="links" id="response"></p>
+        <div id="links_show_list"></div> 
       </div>
     );
   }

@@ -11,7 +11,7 @@ const MainNavigation = props => {
             </div>
             
             <nav className="main-navigation__item">
-                <ul>
+                <ul className="main-navigation__ul">
                     <React.Fragment>
                         <li><NavLink to="/home">Home</NavLink></li>
                     </React.Fragment>

@@ -1,4 +1,6 @@
-
+.html{
+    width: 100%;
+}
 
 .dataForm form{
     text-align: center;
@@ -57,6 +59,11 @@
     border: 3px solid #555;
 }
 
+.links {
+    text-align: center;
+    margin-top: 3em;
+}
+
 .form_image {
     display: flex;
     
@@ -88,6 +95,56 @@
     margin: 5px;
 }
 
+#links_show_list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#links_show_list div {
+    width: 20%;
+    padding-bottom: 1em;
+    margin-left: 1em;
+    margin-top: 1em;
+    margin-right: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#links_show_list div div {
+    width: 70%;
+    height: 100%;
+    padding: 1em;
+    border: 0.5px solid black;
+    text-align: center;
+}
+
+#links_show_list div div:hover {
+    background-color: #EFC050;
+    -webkit-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+}
+
+
+#links_show_list div div a {
+    text-decoration: none;
+    color: #955251;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+    #links_show_list div div{
+        width: 80%;
+    }
+  }
+
+
 
 @media screen and (max-width: 875px) {
     .centered_content {
@@ -99,4 +156,30 @@
         margin-top: 2em;
     }
 
+  }
+
+  @media screen and (max-width: 817px) {
+    #links_show_list div{
+        width: 30%;
+    }
+  }
+
+  @media screen and (max-width: 570px) {
+    #links_show_list div{
+        width: 70%;
+    }
+    #links_show_list div div {
+        width: 80%;
+        height: 100%;
+        padding: 1em;
+    
+        text-align: center;
+    }
+  }
+
+
+  @media screen and (max-width: 375px) {
+    #links_show_list div{
+        width: 90%;
+    }
   }
