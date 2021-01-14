@@ -13,12 +13,12 @@ namespace MLAPIML.ConsoleApp
             ModelInput sampleData = new ModelInput()
             {
                 Rooms = 1F,
-                Area = 28F,
-                Floor = 1F,
-                Year = 1969F,
+                Area = 36F,
+                Floor = 0F,
+                Year = 2019F,
                 Bathrooms = 1F,
-                Kitchens = @"1",
-                Zone = @"Zona Tatarasi",
+                Kitchens = 1F,
+                Zone = @"Aviatiei",
             };
 
             // Make a single prediction on the sample data and print results

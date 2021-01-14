@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "1gcFUQ3/Bg0aGf+FMnz4Nyrm9Ne8p8Aw/1BgD/ZVdA+6yJtdILG+V1Rep3T4eok7KqJRkzafXvD8uKnCe7BMYg==",
+  "dgSpecHash": "q3o22ZTx3Y0n3W2R93yGDITLPu5xAQ+t7Ks2BqZUY07GnTRMJmX67zzXS+fnNvY2EZ34F3N/Yaj418OrzB4YkQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPIML.Model\\MLAPIML.Model.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\damia\\.nuget\\packages\\lightgbm\\2.2.3\\lightgbm.2.2.3.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.3.0\\microsoft.csharp.4.3.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml\\1.5.2\\microsoft.ml.1.5.2.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.cpumath\\1.5.2\\microsoft.ml.cpumath.1.5.2.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.dataview\\1.5.2\\microsoft.ml.dataview.1.5.2.nupkg.sha512",
+    "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.fasttree\\1.5.2\\microsoft.ml.fasttree.1.5.2.nupkg.sha512",
+    "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.lightgbm\\1.5.2\\microsoft.ml.lightgbm.1.5.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "k/V3jTlBzSju2OmTszV3etE5kgDM/Hr8GQdhnfNzXgt43SeqzxmNecbt5RQIeB2b6FJsXYgLDlq8tVe4UkpK5w==",
+  "dgSpecHash": "eemKMtkjjL5yULnAV660jC6RM7lJ1R8nMvF/ATiO3aHryOiwQjtjrDDADXZ6bixiMlEYr8nfhmJ6AMOc2yNkkw==",
   "success": true,
   "projectFilePath": "C:\\Users\\damia\\Desktop\\NET\\proiect\\ml\\proiect-NET\\MLAPI\\MLAPI\\MLAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\damia\\.nuget\\packages\\dnsclient\\1.3.1\\dnsclient.1.3.1.nupkg.sha512",
+    "C:\\Users\\damia\\.nuget\\packages\\lightgbm\\2.2.3\\lightgbm.2.2.3.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\9.0.0\\mediatr.extensions.microsoft.dependencyinjection.9.0.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
@@ -31,6 +32,8 @@
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml\\1.5.4\\microsoft.ml.1.5.4.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.cpumath\\1.5.4\\microsoft.ml.cpumath.1.5.4.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.dataview\\1.5.4\\microsoft.ml.dataview.1.5.4.nupkg.sha512",
+    "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.fasttree\\1.5.2\\microsoft.ml.fasttree.1.5.2.nupkg.sha512",
+    "C:\\Users\\damia\\.nuget\\packages\\microsoft.ml.lightgbm\\1.5.2\\microsoft.ml.lightgbm.1.5.2.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\damia\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

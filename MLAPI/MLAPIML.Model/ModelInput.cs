@@ -27,7 +27,7 @@ namespace MLAPIML.Model
 
 
         [ColumnName("kitchens"), LoadColumn(5)]
-        public string Kitchens { get; set; }
+        public float Kitchens { get; set; }
 
 
         [ColumnName("link"), LoadColumn(6)]

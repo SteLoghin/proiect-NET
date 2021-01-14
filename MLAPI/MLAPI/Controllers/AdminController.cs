@@ -76,14 +76,6 @@ namespace MLAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        [Route("set-train-details")]
-        public ActionResult<string> ModifyTrainHours([FromBody] string details)
-        {
-            //train details like how often the model should be retrained
-            return null;
-        }
-
         [HttpGet]
         [Route("crawling-stats")]
         public async Task<ActionResult> GetCrawlingStatistics()

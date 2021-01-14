@@ -7,13 +7,13 @@ using System.Linq;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using MLAPIML.Model;
-using Microsoft.ML.Trainers;
+using Microsoft.ML.Trainers.LightGbm;
 
 namespace MLAPIML.ConsoleApp
 {
     public static class ModelBuilder
     {
-        private static string TRAIN_DATA_FILEPATH = @"C:\Users\damia\Desktop\NET\proiect\ml\proiect-NET\MLAPI\MLAPI\data_train.csv";
+        private static string TRAIN_DATA_FILEPATH = @"C:\Users\damia\Desktop\NET\proiect\ml\proiect-NET\MLAPI\MLAPI\data_train_new.csv";
         private static string MODEL_FILE = ConsumeModel.MLNetModelPath;
 
         // Create MLContext to be shared across the model creation workflow objects 
@@ -46,14 +46,11 @@ namespace MLAPIML.ConsoleApp
         public static IEstimator<ITransformer> BuildTrainingPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations 
-            var dataProcessPipeline = mlContext.Transforms.Categorical.OneHotEncoding(new[] { new InputOutputColumnPair("kitchens", "kitchens") })
-                                      .Append(mlContext.Transforms.Categorical.OneHotHashEncoding(new[] { new InputOutputColumnPair("rooms", "rooms"), new InputOutputColumnPair("bathrooms", "bathrooms") }))
+            var dataProcessPipeline = mlContext.Transforms.Categorical.OneHotHashEncoding(new[] { new InputOutputColumnPair("rooms", "rooms"), new InputOutputColumnPair("bathrooms", "bathrooms"), new InputOutputColumnPair("kitchens", "kitchens") })
                                       .Append(mlContext.Transforms.Text.FeaturizeText("zone_tf", "zone"))
-                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "kitchens", "rooms", "bathrooms", "zone_tf", "area", "floor", "year" }))
-                                      .Append(mlContext.Transforms.NormalizeMinMax("Features", "Features"))
-                                      .AppendCacheCheckpoint(mlContext);
+                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "rooms", "bathrooms", "kitchens", "zone_tf", "area", "floor", "year" }));
             // Set the training algorithm 
-            var trainer = mlContext.Regression.Trainers.Sdca(new SdcaRegressionTrainer.Options() { L2Regularization = 0.001f, L1Regularization = 0.5f, ConvergenceTolerance = 0.01f, Shuffle = false, BiasLearningRate = 0.1f, LabelColumnName = @"price", FeatureColumnName = "Features" });
+            var trainer = mlContext.Regression.Trainers.LightGbm(new LightGbmRegressionTrainer.Options() { NumberOfIterations = 100, LearningRate = 0.04814507f, NumberOfLeaves = 37, MinimumExampleCountPerLeaf = 1, UseCategoricalSplit = true, HandleMissingValue = true, UseZeroAsMissingValue = false, MinimumExampleCountPerGroup = 10, MaximumCategoricalSplitPointCount = 32, CategoricalSmoothing = 10, L2CategoricalRegularization = 1, Booster = new GradientBooster.Options() { L2Regularization = 0, L1Regularization = 0 }, LabelColumnName = @"price", FeatureColumnName = "Features" });
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);
 

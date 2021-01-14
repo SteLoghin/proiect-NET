@@ -12,7 +12,7 @@ namespace MLAPI.DTOs
         public float? Floor { get; set; }
         public float? Year { get; set; }
         public float? Bathrooms { get; set; }
-        public string Kitchens { get; set; }
+        public float? Kitchens { get; set; }
         public string Link { get; set; }
         public string Zone { get; set; }
         public float? Price { get; set; }

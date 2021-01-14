@@ -17,7 +17,7 @@ namespace MLAPI.DTOs
 
         public float Bathrooms { get; set; }
         
-        public string Kitchens { get; set; }
+        public float Kitchens { get; set; }
 
         public string Link { get; set; }
 

@@ -21,7 +21,7 @@ namespace MLAPI.Models
 
         public float Bathrooms { get; private set; }
 
-        public string Kitchens { get; private set; }
+        public float Kitchens { get; private set; }
 
         public string Link { get; private set; }
 
