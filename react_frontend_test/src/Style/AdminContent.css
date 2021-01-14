@@ -81,3 +81,9 @@ td,tr{
 tr th{
     padding: 5px;
 }
+
+tr button{
+    display:block;
+    width: 100%;
+    /* border: 5px solid blue; */
+}
