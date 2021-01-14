@@ -5,9 +5,7 @@ body{
     font-family: sans-serif;
 }
 
-.admin-dashboard{
-    margin-left: 10px;
-}
+
 
 
 .admin-dashboard .dataForm form {
@@ -43,7 +41,7 @@ input{
 }
 
 .post-button:hover {
-    background-color: #3e8e41
+    background-color: #3e8e41;
 }
 
 .post-button:active {
@@ -93,3 +91,58 @@ td input{
     display:block;
     width: 100%;
 }
+
+
+
+.crawler-operations {
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-buttons {
+    width: 100%;
+    margin-top: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 2px solid green;
+}
+
+
+.bottom-buttons {
+    width: 100%;
+    margin-top: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 2px solid green;
+}
+
+.crawler button {
+    background-color: #4CAF50;
+    padding: 1em;
+    width: 100%;
+    margin-top: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 0px;
+    cursor: pointer;
+    color: black;
+}
+
+.crawler button:hover {
+    background-color: #3e8e41;
+    -webkit-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+    color: white;
+}
+
+.dataForm {
+    width: 100%;
+    margin-left: 0;
+}
+

@@ -291,13 +291,10 @@ class AdminContent extends Component {
 
     return (
       <div className="admin-dashboard">
-        <h1>(WIP)</h1>
-        <h2>
-          TODO posibil, daca tabelul e deja creat dinamic si adminu da post la
-          date, sa pun datele noi in tabel pe loc in mod dinamic
-        </h2>
-        <h2> Ati intrat pe dashboard-ul de admin.</h2>{" "}
-        <h2>Introduceti o noua locuinta:</h2>
+        <h1>Admin Dashboard</h1>
+      
+        
+        <h2>Add a new property to the database:</h2>
         <div className="dataForm">
           <form onSubmit={this.submitHandler}>
             <div>
@@ -426,11 +423,14 @@ class AdminContent extends Component {
               </label>
             </div>
             <button className="post-button" type="submit">
-              Adauga
+              Add to database
             </button>
             <p id="added"></p>
           </form>
           <div class="crawler-operations">
+
+            <div className="top-buttons">
+
             <div className="crawler">
               <button
                 className="get-button-crawler"
@@ -452,16 +452,23 @@ class AdminContent extends Component {
               </button>
               <p id="renew-training-data"></p>
             </div>
+
+            </div>
+
+            <div className="bottom-buttons">
+
             <div className="crawler">
               <button onClick={this.retrainModel}>
                 Reantreneaza modelul pentru predictie
               </button>
               <p id="retrain-model-stats"></p>
             </div>
-            <div id="get-properties">
+            <div id="get-properties" className="crawler">
               <button onClick={this.fetchProperties} className="fetch-button">
                 Vizualizeaza toate proprietatile
               </button>
+            </div>
+
             </div>
           </div>
         </div>
