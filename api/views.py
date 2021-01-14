@@ -132,8 +132,10 @@ def crawl_imobiliare():
     nr_iteratii = list(map(lambda x: int(x['data-pagina']), nr_iteratii))
     nr_iteratii = sorted(nr_iteratii, reverse=True)[0]
     properties = list()
-    for i in range(1, nr_iteratii + 1):
-        page = requests.get('https://www.imobiliare.ro/inchirieri-apartamente/iasi?id=230264596&pagina=' + str(i))
+    for j in range(1, nr_iteratii):
+        if j == 2:
+            break
+        page = requests.get('https://www.imobiliare.ro/inchirieri-apartamente/iasi?id=230264596&pagina=' + str(j))
         page_soup = BeautifulSoup(page.content, 'html.parser')
         links = page_soup.find_all('a', href=True, class_='detalii-proprietate desktop')
         links = list(map(lambda x: x['href'], links))
@@ -142,7 +144,7 @@ def crawl_imobiliare():
             page2 = requests.get(k)
             page2_soup = BeautifulSoup(page2.content, 'html.parser')
             zone = page2_soup.find("div", class_="header_info")
-            zone = zone.find('div', class_="col-lg-9 col-md-9 col-sm-9 col-xs-12").text.replace("ă", "a").replace("ş", "s")
+            zone = zone.find('div', class_="col-lg-9 col-md-9 col-sm-9 col-xs-12").text.replace("ă", "a").replace("ş", "s").replace("â", "a")
             if zone == "Bd. Independetei":
                 zone = "Bulevardul Independentei"
             if zone == "Cug":
@@ -217,7 +219,7 @@ def crawl_imobiliare():
                 
             except Exception as e:
                 print("Failed to crawl property")
-        print(f"Finished page {i} on imobiliare")
+        print(f"Finished page {j} on imobiliare")
     properties = [dict(t) for t in {tuple(sorted(prop.items())) for prop in properties}]
     return properties
 
@@ -243,6 +245,7 @@ def background_task():
             "last_crawl_datetime": f"{datetime.date(datetime.now())} - {datetime.time(datetime.now())}"
         }
     try:
+        print("finished titirez crawling")
         start_time_s1 = time.time() 
         properties = crawl_imobiliare()
         full_properties.append(list(properties))
@@ -259,8 +262,8 @@ def background_task():
             "last_crawl_datetime": f"{datetime.date(datetime.now())} - {datetime.time(datetime.now())}"
         }
     finally:
-        zones = sorted([x for x in set(map(lambda x: x["zone"], full_properties))])
-        floors = sorted([x for x in set(map(lambda x: x["floor"], full_properties))])
+        zones = sorted([str(x) for x in set(map(lambda x: x["zone"], full_properties))])
+        floors = sorted([int(x) for x in set(map(lambda x: x["floor"], full_properties))])
         crawl_results["zones"] = zones
         crawl_results["floors"] = floors
         client.Crawler_Info.crawler_info.delete_many({})
