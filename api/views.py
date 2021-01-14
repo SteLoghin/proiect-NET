@@ -37,7 +37,7 @@ class Crawler(View):
         info = list(info)
         info = dict(info[0])
         info["zones"] = zones
-        inf0["floors"] = floors
+        info["floors"] = floors
         return JsonResponse(json.loads(json_util.dumps(info)), safe=False)
 
 def crawl_titirez():
