@@ -31,9 +31,13 @@ class Crawler(View):
         client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
         properties = client.Crawler_Info.api_property.find({}, {"_id": 0, "id": 0})
         properties = list(properties)
-        crawl_results["zones"] = sorted([str(x) for x in set(map(lambda x: x["zone"], properties))])
-        crawl_results["floors"] = sorted([int(x) for x in set(map(lambda x: x["floor"], full_properties))])
+        zones = sorted([str(x) for x in set(map(lambda x: x["zone"], properties))])
+        floors = sorted([int(x) for x in set(map(lambda x: x["floor"], properties))])
         info = client.Crawler_Info.crawler_info.find()
+        info = list(info)
+        info = dict(info[0])
+        info["zones"] = zones
+        inf0["floors"] = floors
         return JsonResponse(json.loads(json_util.dumps(info)), safe=False)
 
 def crawl_titirez():
@@ -266,6 +270,5 @@ def background_task():
             "last_crawl_datetime": f"{datetime.date(datetime.now())} - {datetime.time(datetime.now())}"
         }
     finally:
-
         client.Crawler_Info.crawler_info.delete_many({})
         client.Crawler_Info.crawler_info.insert_one(dict(crawl_results))
