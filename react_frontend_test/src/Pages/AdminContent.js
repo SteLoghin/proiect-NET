@@ -3,7 +3,6 @@ import "../Style/AdminContent.css";
 import axios from "axios";
 
 class AdminContent extends Component {
-  static errors = {};
   constructor(props) {
     super(props);
 
@@ -40,7 +39,8 @@ class AdminContent extends Component {
         // console.log(response);
         showStats.textContent = "";
         // TODO posibil, in caz ca o sa mai faca crawl pe alte site-uri, voi modifica aici cu o functie ca sa nu para ca e "hardcodat" titirez din json
-        const data = JSON.parse(JSON.stringify(response.data[0].titrez));
+        console.log(response.data)
+        const data = JSON.parse(JSON.stringify(response.data.titrez));
         // console.log("data=", data);
         const numberOfNewProperties = data.length;
         const totalCrawlTime = JSON.stringify(data.total_crawl_time).split(
@@ -205,7 +205,7 @@ class AdminContent extends Component {
         console.log(err);
       });
 
-    //TODO sa modifc innerhtml
+    
   };
 
   fetchProperties = () => {
@@ -430,7 +430,7 @@ class AdminContent extends Component {
             </button>
             <p id="added"></p>
           </form>
-          <div class="crawler-operations">
+          <div className="crawler-operations">
             <div className="crawler">
               <button
                 className="get-button-crawler"
