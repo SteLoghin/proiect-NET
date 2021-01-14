@@ -250,7 +250,7 @@ def background_task():
         print("started imobiliare crawling")
         start_time_s1 = time.time() 
         properties = crawl_imobiliare()
-        full_properties = full_properties + list(properties))
+        full_properties = full_properties + list(properties)
         crawl_results["imobiliare"] = {
             "total_crawl_time": time.time() - start_time_s1,
             "length": len(properties),
