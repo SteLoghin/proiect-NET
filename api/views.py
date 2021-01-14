@@ -24,7 +24,6 @@ class Properties(View):
 @method_decorator(csrf_exempt, name='dispatch')
 class Crawler(View):
     def post(self, request):
-        #TODO: decide if we should delete them or soft delete them and keep them
         django_rq.enqueue(background_task)
         return JsonResponse({"crawler_status": "started"}, status=200)
     
@@ -32,7 +31,6 @@ class Crawler(View):
         client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
         info = client.Crawler_Info.crawler_info.find()
         return JsonResponse(json.loads(json_util.dumps(info)), safe=False)
-
 
 def crawl_titirez():
     properties = list()
@@ -115,14 +113,106 @@ def crawl_titirez():
             del row_list[:]
             del aux[:]
             dictionar.clear()
+    properties = [dict(t) for t in {tuple(sorted(prop.items())) for prop in properties}]
+    return properties
 
+def crawl_imobiliare():
+
+    main_link = requests.get('https://www.imobiliare.ro/inchirieri-apartamente/iasi?id=230197420')
+    main_link_soup = BeautifulSoup(main_link.content, 'html.parser')
+    nr_iteratii = main_link_soup.find_all('a', class_='butonpaginare') #get the last pagination button
+    nr_iteratii = list(map(lambda x: int(x['data-pagina']), nr_iteratii))
+    nr_iteratii = sorted(nr_iteratii, reverse=True)[0]
+    properties = list()
+    for i in range(1, nr_iteratii + 1):
+        page = requests.get('https://www.imobiliare.ro/inchirieri-apartamente/iasi?id=230264596&pagina=' + str(i))
+        page_soup = BeautifulSoup(page.content, 'html.parser')
+        links = page_soup.find_all('a', href=True, class_='detalii-proprietate desktop')
+        links = list(map(lambda x: x['href'], links))
+
+        for k in links:
+            page2 = requests.get(k)
+            page2_soup = BeautifulSoup(page2.content, 'html.parser')
+            zone = page2_soup.find("div", class_="header_info")
+            zone = zone.find('div', class_="col-lg-9 col-md-9 col-sm-9 col-xs-12").text.replace("ă", "a").replace("ş", "s")
+            pret = page2_soup.find("div", class_="pret first blue").contents[1].rstrip(' ')
+            print(pret)
+            try:
+                zone = zone.split(',')[1].split('-')[0].split(' ', 2)
+                zone = list(filter(lambda x: len(x) != 0, zone))
+                if(len(zone) != 2):
+                    zone = "Iasi"
+                else:
+                    zone = zone[1].rstrip(' ')
+            except Exception as e:
+                zone = "Iasi"
+            coloana_cu_informatii_1 = page2_soup.find('ul', class_='lista-tabelara')
+            coloana_cu_informatii_2 = page2_soup.find_all('ul', class_='lista-tabelara mobile-list')
+            coloana_cu_informatii_1 = coloana_cu_informatii_1.find_all("li")
+            details = ""
+            for i in coloana_cu_informatii_1:
+                details += i.text
+                details += '\n'
+            for i in coloana_cu_informatii_2:
+                details += i.text
+                details += '\n'   
+            
+            try:
+                nr_camere = re.search('Nr. camere:([0-9]+)', details).group(1)
+                suprafata = re.search('Suprafaţă utilă:([0-9,]+) mp', details).group(1)
+                etaj = re.search('Etaj ([0-9]+)', details)
+                if etaj:
+                    etaj = etaj.group(1)
+                else:
+                    etaj = 0
+                
+                an_constructie = re.search('An construcţie:([0-9]+)', details)
+                if an_constructie:
+                    an_constructie = an_constructie.group(1)
+                else:
+                    an_constructie = re.search('An construcţie:După ([0-9]+)', details)
+                    if an_constructie:
+                        an_constructie = an_constructie.group(1)
+                    else:
+                        an_constructie = re.search('An construcţie:Între [0-9]+ şi ([0-9]+)', details)
+                        if an_constructie:
+                            an_constructie = an_constructie.group(1)
+                        else:
+                            print("failed")
+                            break
+                nr_bai = re.search('Nr. băi:([0-9]+)', details)
+                if nr_bai:
+                    nr_bai = nr_bai.group(1)
+                else:
+                    nr_bai = 1
+                nr_bucatarii = re.search('Nr. bucătării:([0-9]+)', details)
+                if nr_bucatarii:
+                    nr_bucatarii = nr_bucatarii.group(1)
+                else:
+                    nr_bucatarii = 1
+                dictionar = {
+                    "rooms": nr_camere,
+                    "area": suprafata,
+                    "floor": etaj,
+                    "year": an_constructie,
+                    "bathrooms": nr_bai,
+                    "kitchens": nr_bucatarii,
+                    "link": k,
+                    "zone": zone,
+                    "price": pret,
+                }
+                properties.append(dict(dictionar))
+            except Exception as e:
+                print("Failed to crawl")
+            break
+    properties = [dict(t) for t in {tuple(sorted(prop.items())) for prop in properties}]
     return properties
 
 def background_task():
     crawl_results = {}
+    client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
+    client.Crawler_Info.api_property.delete_many({})
     try:
-        client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
-        client.Crawler_Info.api_property.delete_many({})
         start_time_s1 = time.time() 
         properties = crawl_titirez()
         crawl_results["titrez"] = {
@@ -134,6 +224,21 @@ def background_task():
             client.Crawler_Info.api_property.insert_one(p)
     except Exception as e:
         crawl_results["titirez"] = {
+            "error": str(e.with_traceback), 
+            "last_crawl_datetime": f"{datetime.date(datetime.now())} - {datetime.time(datetime.now())}"
+        }
+    try:
+        start_time_s1 = time.time() 
+        properties = crawl_imobiliare()
+        crawl_results["imobiliare"] = {
+            "total_crawl_time": time.time() - start_time_s1,
+            "length": len(properties),
+            "last_crawl_datetime": f"{datetime.date(datetime.now())} {datetime.time(datetime.now())}"
+        }
+        for p in properties:
+            client.Crawler_Info.api_property.insert_one(p)
+    except Exception as e:
+        crawl_results["imobiliare"] = {
             "error": str(e.with_traceback), 
             "last_crawl_datetime": f"{datetime.date(datetime.now())} - {datetime.time(datetime.now())}"
         }
