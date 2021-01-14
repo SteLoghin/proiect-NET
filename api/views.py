@@ -262,7 +262,7 @@ def background_task():
             "last_crawl_datetime": f"{datetime.date(datetime.now())} - {datetime.time(datetime.now())}"
         }
     finally:
-        zones = sorted([str(x) for x in set(map(lambda x: x["zone"], full_properties))])
+        zones = [str(x) for x in set(map(lambda x: x["zone"], full_properties))].sort()
         floors = sorted([int(x) for x in set(map(lambda x: x["floor"], full_properties))])
         crawl_results["zones"] = zones
         crawl_results["floors"] = floors
