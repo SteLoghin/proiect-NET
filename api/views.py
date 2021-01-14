@@ -29,6 +29,10 @@ class Crawler(View):
     
     def get(self, request):
         client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
+        properties = client.Crawler_Info.api_property.find({}, {"_id": 0, "id": 0})
+        properties = list(properties)
+        crawl_results["zones"] = sorted([str(x) for x in set(map(lambda x: x["zone"], properties))])
+        crawl_results["floors"] = sorted([int(x) for x in set(map(lambda x: x["floor"], full_properties))])
         info = client.Crawler_Info.crawler_info.find()
         return JsonResponse(json.loads(json_util.dumps(info)), safe=False)
 
@@ -262,9 +266,6 @@ def background_task():
             "last_crawl_datetime": f"{datetime.date(datetime.now())} - {datetime.time(datetime.now())}"
         }
     finally:
-        zones = [str(x) for x in set(map(lambda x: x["zone"], full_properties))].sort()
-        floors = sorted([int(x) for x in set(map(lambda x: x["floor"], full_properties))])
-        crawl_results["zones"] = zones
-        crawl_results["floors"] = floors
+
         client.Crawler_Info.crawler_info.delete_many({})
         client.Crawler_Info.crawler_info.insert_one(dict(crawl_results))
