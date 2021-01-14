@@ -76,34 +76,30 @@ def crawl_titirez():
                     if etaj:
                         etaj = etaj.group(0)
                     else:
-                        etaj = 0
+                        etaj = '0'
                 if i == 4:
                     an_constructie = re.search('[0-9]+', str(aux[i]))
                     if an_constructie:
                         an_constructie = an_constructie.group(0)
                     else:
-                        an_constructie = 0
+                        an_constructie = '2000'
                 if i == 7:
                     nr_bai = re.search('[0-9]+', str(aux[i]))
                     if nr_bai:
                         nr_bai = nr_bai.group(0)
                     else:
-                        nr_bai = 0
+                        nr_bai = '1'
                 if i == 8:
                     nr_bucatarii = re.search('-?[0-9]+', str(aux[i]))
                     if nr_bucatarii:
                         nr_bucatarii = nr_bucatarii.group(0)
                     else:
-                        nr_bucatarii = 0
+                        nr_bucatarii = '1'
             zona = cauta_zona.split(' ', 1)
             if len(zona) == 2:
                 zona = zona[1]
             else:
                 zona = zona[0]
-            if nr_bucatarii == 0:
-                nr_bucatarii = 1
-            if nr_bai == 0:
-                nr_bai = 1
             if len(zona) == 0:
                 zona = "Iasi"
             
@@ -127,7 +123,6 @@ def crawl_titirez():
             dictionar.clear()
     properties = [dict(t) for t in {tuple(sorted(prop.items())) for prop in properties}]
     return properties
-
 
 def crawl_imobiliare():
 
@@ -154,7 +149,6 @@ def crawl_imobiliare():
                 zone = "CUG"
             
             pret = page2_soup.find("div", class_="pret first blue").contents[1].rstrip(' ')
-            print(pret)
             try:
                 zone = zone.split(',')[1].split('-')[0].split(' ', 2)
                 zone = list(filter(lambda x: len(x) != 0, zone))
@@ -182,7 +176,7 @@ def crawl_imobiliare():
                 if etaj:
                     etaj = etaj.group(1)
                 else:
-                    etaj = 0
+                    etaj = '0'
                 
                 an_constructie = re.search('An construcţie:([0-9]+)', details)
                 if an_constructie:
@@ -202,12 +196,12 @@ def crawl_imobiliare():
                 if nr_bai:
                     nr_bai = nr_bai.group(1)
                 else:
-                    nr_bai = 1
+                    nr_bai = '1'
                 nr_bucatarii = re.search('Nr. bucătării:([0-9]+)', details)
                 if nr_bucatarii:
                     nr_bucatarii = nr_bucatarii.group(1)
                 else:
-                    nr_bucatarii = 1
+                    nr_bucatarii = '1'
                 dictionar = {
                     "rooms": nr_camere,
                     "area": suprafata,
@@ -220,8 +214,10 @@ def crawl_imobiliare():
                     "price": pret,
                 }
                 properties.append(dict(dictionar))
+                
             except Exception as e:
-                print("Failed to crawl")
+                print("Failed to crawl property")
+        print(f"Finished page {i} on imobiliare")
     properties = [dict(t) for t in {tuple(sorted(prop.items())) for prop in properties}]
     return properties
 
@@ -229,9 +225,11 @@ def background_task():
     crawl_results = {}
     client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
     client.Crawler_Info.api_property.delete_many({})
+    full_properties = list()
     try:
         start_time_s1 = time.time() 
         properties = crawl_titirez()
+        full_properties = list(properties)
         crawl_results["titrez"] = {
             "total_crawl_time": time.time() - start_time_s1,
             "length": len(properties),
@@ -247,6 +245,7 @@ def background_task():
     try:
         start_time_s1 = time.time() 
         properties = crawl_imobiliare()
+        full_properties.append(list(properties))
         crawl_results["imobiliare"] = {
             "total_crawl_time": time.time() - start_time_s1,
             "length": len(properties),
@@ -260,5 +259,9 @@ def background_task():
             "last_crawl_datetime": f"{datetime.date(datetime.now())} - {datetime.time(datetime.now())}"
         }
     finally:
+        zones = sorted([x for x in set(map(lambda x: x["zone"], full_properties))])
+        floors = sorted([x for x in set(map(lambda x: x["floor"], full_properties))])
+        crawl_results["zones"] = zones
+        crawl_results["floors"] = floors
         client.Crawler_Info.crawler_info.delete_many({})
         client.Crawler_Info.crawler_info.insert_one(dict(crawl_results))

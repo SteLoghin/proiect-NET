@@ -134,15 +134,15 @@ CORS_ORIGIN_ALLOW_ALL = True # development, in production this should be false, 
 RQ_QUEUES = {
     'default': {
         'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
-        'DEFAULT_TIMEOUT': 500,
+        'DEFAULT_TIMEOUT': 3600,
     },
     'high': {
         'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
-        'DEFAULT_TIMEOUT': 500,
+        'DEFAULT_TIMEOUT': 3600,
     },
     'low': {
         'URL': os.getenv('REDISTOGO_URL', 'redis://localhost:6379/0'), # If you're on Heroku
-        'DEFAULT_TIMEOUT': 500,
+        'DEFAULT_TIMEOUT': 3600,
     }
 }
 
