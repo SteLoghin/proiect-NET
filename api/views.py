@@ -204,7 +204,6 @@ def crawl_imobiliare():
                 properties.append(dict(dictionar))
             except Exception as e:
                 print("Failed to crawl")
-            break
     properties = [dict(t) for t in {tuple(sorted(prop.items())) for prop in properties}]
     return properties
 
