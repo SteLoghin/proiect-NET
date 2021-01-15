@@ -1,23 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../Style/mainNavigation.css';
+import {Navbar, Nav} from 'react-bootstrap';
 
 
 const MainNavigation = props => {
     return (
-        <header className="main-navigation">
-            <div className="main-navigation__logo">
-                <h1>DotNetHouse</h1>
-            </div>
-            
-            <nav className="main-navigation__item">
-                <ul className="main-navigation__ul">
-                    <React.Fragment>
-                        <li><NavLink to="/home">Home</NavLink></li>
-                    </React.Fragment>
-                </ul>
-            </nav>
-        </header>
+        <>
+        <Navbar bg="dark" variant="dark">
+            <Navbar.Brand href="#home">DOT NET HOUSE</Navbar.Brand>
+            <Nav className="mr-auto">
+                <Nav.Link href="/home">Home</Nav.Link>
+            </Nav>
+        </Navbar>
+        </>
         );
 };
    

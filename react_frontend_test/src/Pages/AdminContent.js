@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "../Style/AdminContent.css";
 import axios from "axios";
+import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container';
+import {Row, Col, Button, Jumbotron, Form} from 'react-bootstrap';
 
 class AdminContent extends Component {
   constructor(props) {
@@ -24,14 +27,14 @@ class AdminContent extends Component {
   };
 
   successfullyAdded = () => {
-    const addded = document.getElementById("added");
+    const addded = document.getElementById("info");
     addded.textContent =
       "Proprietatea a fost adaugata cu succes in baza de date!";
   };
 
   displayCrawlerStats = () => {
     // console.log("cevaaa");
-    const showStats = document.getElementById("crawler-stats");
+    const showStats = document.getElementById("info");
     showStats.textContent = "Asteptam raspunsul de la server...";
     axios
       .get("http://localhost:5000/api/v1/admin/crawling-stats")
@@ -56,7 +59,7 @@ class AdminContent extends Component {
   };
 
   startCrawlerRequest = () => {
-    const crawlerStart = document.getElementById("crawler-start");
+    const crawlerStart = document.getElementById("info");
     crawlerStart.textContent = "Asteptam raspunsul de la server...";
     console.log("start crawler");
     axios
@@ -70,7 +73,7 @@ class AdminContent extends Component {
   };
 
   renewTrainingDataRequest = () => {
-    const text = document.getElementById("renew-training-data");
+    const text = document.getElementById("info");
     text.textContent = "Asteptam raspunsul de la server...";
     axios
       .post("http://localhost:5000/api/v1/admin/renew-training-data")
@@ -84,7 +87,7 @@ class AdminContent extends Component {
   };
 
   retrainModel = () => {
-    const text = document.getElementById("retrain-model-stats");
+    const text = document.getElementById("info");
     const admin = "admin";
     axios
       .post(
@@ -120,7 +123,6 @@ class AdminContent extends Component {
 
   updateProperty = (propertyId) => {
     if (this.state.id[propertyId] === true) {
-      console.log("IESI IN PIZDA MATI");
       return;
     }
     console.log("intru in updateProperty nu in a doua functie");
@@ -175,11 +177,10 @@ class AdminContent extends Component {
       this.putRequest("editBtn-" + propertyId);
     });
     // console.log(`row-values:${rowValues}`)
-    editBtn.textContent = "updateeeeee";
+    editBtn.textContent = "Update";
   };
 
   putRequest = (btnID) => {
-    console.log("INTRU IN PULAM EA AIAIC");
     let propertyID = btnID.split("-")[1];
     const updatedRow = document.getElementById(propertyID).children;
     console.log(propertyID);
@@ -199,7 +200,7 @@ class AdminContent extends Component {
     axios
       .put(url, propertyToUpdate)
       .then((response) => {
-        console.log("O MEEERS");
+        console.log("modified");
       })
       .catch((err) => {
         console.log(err);
@@ -214,19 +215,22 @@ class AdminContent extends Component {
       .then((response) => {
         const propertiesList = response.data;
         // console.log(propertiesList);
-        const tableParent = document.getElementById("get-properties");
-        const propertiesTable = document.createElement("table");
-        tableParent.appendChild(propertiesTable);
+        //const tableParent = document.getElementById("get-properties");
+        const propertiesTable = document.getElementById("properties-table");
+        //tableParent.appendChild(propertiesTable);
         const tableHead = document.createElement("thead");
         tableHead.setAttribute("id", "table-head");
         const firstRow = document.createElement("tr");
         let keys = Object.keys(propertiesList[0]);
         // console.log(keys);
-        for (let i = 1; i < keys.length; i++) {
+        for (let i = 0; i < keys.length; i++) {
           const atribut = document.createElement("th");
           atribut.appendChild(document.createTextNode(keys[i]));
           firstRow.appendChild(atribut);
         }
+        const actions = document.createElement("th");
+        actions.appendChild(document.createTextNode("actions"));
+        firstRow.appendChild(actions);
 
         tableHead.appendChild(firstRow);
         propertiesTable.appendChild(tableHead);
@@ -237,25 +241,26 @@ class AdminContent extends Component {
           const tr = document.createElement("tr");
           tr.setAttribute("id", property[keys[0]]);
 
-          for (let i = 1; i < keys.length; i++) {
+          for (let i = 0; i < keys.length; i++) {
             const atribut = document.createElement("td");
             // console.log("----------------", property[keys[i]]);
             atribut.appendChild(document.createTextNode(property[keys[i]]));
             tr.appendChild(atribut);
           }
-          const deleteBtn = document.createElement("button");
+          const deleteBtn = document.createElement("Button");
           // deleteBtn.setAttribute("id","btn"+property[keys[0]])
           deleteBtn.addEventListener("click", () =>
             this.deleteProperty(property[keys[0]])
           );
-          const editBtn = document.createElement("button");
+          const editBtn = document.createElement("Button");
           editBtn.setAttribute("id", "editBtn-" + property[keys[0]]);
           editBtn.addEventListener("click", () => {
             this.updateProperty(property[keys[0]]);
           });
-          editBtn.appendChild(document.createTextNode("edite me"));
+          
+          editBtn.appendChild(document.createTextNode("Edit"));
           // console.log(property[keys[0]]);
-          deleteBtn.appendChild(document.createTextNode("delete me"));
+          deleteBtn.appendChild(document.createTextNode("Delete"));
           // TODO sa incerc sa fac edit btn
           tr.appendChild(deleteBtn);
           tr.appendChild(editBtn);
@@ -290,12 +295,25 @@ class AdminContent extends Component {
     } = this.state;
 
     return (
-      <div className="admin-dashboard">
+      <Container>
         <h1>Admin Dashboard</h1>
       
         
         <h2>Add a new property to the database:</h2>
-        <div className="dataFormNEW">
+        <Form>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control placeholder="Enter email" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control />
+            </Form.Group>
+          </Form.Row>
+        </Form>
+        {/*<div className="dataFormNEW">
           <form onSubmit={this.submitHandler}>
             <div>
               <label>
@@ -472,8 +490,34 @@ class AdminContent extends Component {
 
             </div>
           </div>
-        </div>
-      </div>
+          
+        </div> */}       
+        <Container>
+            <Row>
+              <Col>
+              <Container>
+                <Row><Col className="btn-col"><Button variant="success" onClick={this.retrainModel} className="full-width">Retrain Model</Button></Col></Row>
+                <Row><Col className="btn-col"><Button variant="success" onClick={this.renewTrainingDataRequest} className="full-width">Renew training data</Button></Col></Row>
+                <Row><Col className="btn-col"><Button variant="success" onClick={this.startCrawlerRequest} className="full-width">Start Crawler</Button></Col></Row>
+                <Row><Col className="btn-col"><Button variant="success" onClick={this.displayCrawlerStats} className="full-width get-button-crawler">Show Crawler Statistics</Button></Col></Row>
+                <Row><Col className="btn-col"><Button variant="success" onClick={this.fetchProperties} className="full-width fetch-button">Show properties</Button></Col></Row>
+              </Container>
+              </Col>
+              <Col>
+              <Container>
+              <Jumbotron fluid>
+              <Container>
+                <p id="info">
+                </p>
+              </Container>
+            </Jumbotron>
+              </Container>
+              </Col>
+            </Row>
+          </Container>
+        <Table responsive="sm" striped bordered hover id="properties-table">
+        </Table>
+      </Container>
     );
   }
 }
