@@ -276,7 +276,7 @@ class AdminContent extends Component {
   submitHandler = (e) => {
     e.preventDefault();
 
-    console.log(this.state);
+    // console.log(this.state);
     axios
       .post("http://localhost:5000/api/v1/properties", this.state)
       .then(this.successfullyAdded());
@@ -300,198 +300,107 @@ class AdminContent extends Component {
       
         
         <h2>Add a new property to the database:</h2>
-        <Form>
+        <Form onSubmit={this.submitHandler}>
           <Form.Row>
-            <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control placeholder="Enter email" />
+            <Form.Group as={Col}>
+              <Form.Label>Rooms</Form.Label>
+              <Form.Control type="number" 
+                name="Rooms"
+                id="Rooms"
+                value={rooms}
+                onChange={this.changeHandler}
+                required/>
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control />
-            </Form.Group>
-          </Form.Row>
-        </Form>
-        {/*<div className="dataFormNEW">
-          <form onSubmit={this.submitHandler}>
-            <div>
-              <label>
-                Rooms
-                <br />
-                <input
-                  type="number"
-                  name="Rooms"
-                  id="Rooms"
-                  value={rooms}
-                  onChange={this.changeHandler}
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Area
-                <br />
-                <input
-                  type="number"
+            <Form.Group as={Col} >
+              <Form.Label>Area</Form.Label>
+              <Form.Control type="number"
                   name="Area"
                   value={area}
                   onChange={this.changeHandler}
                   id="lotConfig"
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Floor <br />
-                <input
-                  type="number"
+                  required/>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col}>
+              <Form.Label>Floor</Form.Label>
+              <Form.Control type="number" 
                   name="Floor"
                   id="floor"
                   value={floor}
                   onChange={this.changeHandler}
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Bathrooms
-                <br />
-                <input
-                  type="number"
-                  name="Bathrooms"
-                  value={bathrooms}
-                  onChange={this.changeHandler}
-                  id="Bathrooms"
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Year
-                <br />
-                <input
-                  type="number"
+                  required/>
+            </Form.Group>
+
+            <Form.Group as={Col} >
+              <Form.Label>Bathrooms</Form.Label>
+              <Form.Control type="number"
+                name="Bathrooms"
+                value={bathrooms}
+                onChange={this.changeHandler}
+                id="Bathrooms"
+                required/>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col}>
+              <Form.Label>Year</Form.Label>
+              <Form.Control type="number" 
                   name="Year"
                   id="Year"
                   value={year}
                   onChange={this.changeHandler}
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Kitchens
-                <br />
-                <input
-                  type="text"
-                  name="Kitchens"
-                  id="kitchens"
-                  value={kitchens}
-                  onChange={this.changeHandler}
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Link
-                <br />
-                <input
-                  type="text"
-                  id="Link"
-                  name="Link"
-                  value={link}
-                  onChange={this.changeHandler}
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Zone
-                <br />
-                <input
-                  type="text"
-                  name="Zone"
-                  id="Zone"
-                  value={zone}
-                  onChange={this.changeHandler}
-                  required
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Price
-                <br />
-                <input
-                  type="number"
-                  name="Price"
-                  id="Price"
-                  value={price}
-                  onChange={this.changeHandler}
-                  required
-                />
-              </label>
-            </div>
-            <button className="post-button" type="submit">
-              Add to database
-            </button>
-            
-          </form>
-          <p id="added" className="add_to_db_confirmation"></p>
-          <div className="crawler-operations">
+                  required/>
+            </Form.Group>
 
-            <div className="top-buttons">
+            <Form.Group as={Col} >
+              <Form.Label>Kitchens</Form.Label>
+              <Form.Control type="number"
+                name="Kitchens"
+                id="kitchens"
+                value={kitchens}
+                onChange={this.changeHandler}
+                required/>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col}>
+              <Form.Label>Link</Form.Label>
+              <Form.Control type="text"
+                id="Link"
+                name="Link"
+                value={link}
+                onChange={this.changeHandler}
+                required/>
+            </Form.Group>
 
-            <div className="crawler">
-              <button
-                className="get-button-crawler"
-                onClick={this.displayCrawlerStats}
-              >
-                Show crawler statistics
-              </button>
-              <p id="crawler-stats"></p>
-            </div>
-            <div className="crawler">
-              <button onClick={this.startCrawlerRequest}>
-                Start the crawler
-              </button>
-              <p id="crawler-start"></p>
-            </div>
-            <div className="crawler">
-              <button onClick={this.renewTrainingDataRequest}>
-                Renew training data
-              </button>
-              <p id="renew-training-data"></p>
-            </div>
+            <Form.Group as={Col} >
+              <Form.Label>Zone</Form.Label>
+              <Form.Control type="text"
+                name="Zone"
+                id="Zone"
+                value={zone}
+                onChange={this.changeHandler}
+                required/>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col}>
+              <Form.Label>Price</Form.Label>
+              <Form.Control  type="number"
+                name="Price"
+                id="Price"
+                value={price}
+                onChange={this.changeHandler}
+                required/>
+            </Form.Group>
 
-            </div>
-
-            <div className="bottom-buttons">
-
-            <div className="crawler">
-              <button onClick={this.retrainModel}>
-                Retrain prediction model
-              </button>
-              <p id="retrain-model-stats"></p>
-            </div>
-            <div id="get-properties" className="crawler">
-              <button onClick={this.fetchProperties} className="fetch-button">
-                Show all properties stored
-              </button>
-            </div>
-
-            </div>
-          </div>
-          
-        </div> */}       
+            <Button variant="primary" className="post-button" type="submit">
+              Submit
+            </Button>
+          </Form.Row>
+        </Form>
         <Container>
             <Row>
               <Col>
@@ -504,14 +413,12 @@ class AdminContent extends Component {
               </Container>
               </Col>
               <Col>
-              <Container>
-              <Jumbotron fluid>
-              <Container>
-                <p id="info">
-                </p>
-              </Container>
-            </Jumbotron>
-              </Container>
+                <Jumbotron fluid>
+                  <Container>
+                    <p id="info">
+                    </p>
+                  </Container>
+                </Jumbotron>
               </Col>
             </Row>
           </Container>
