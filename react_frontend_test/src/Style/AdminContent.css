@@ -112,10 +112,10 @@ td input{
 
 
 .bottom-buttons {
-    width: 100%;
+    width: 30%;
     margin-top: 3em;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     border: 2px solid green;
 }
@@ -133,6 +133,13 @@ td input{
     color: black;
 }
 
+#crawler-stats {
+    width: 100%;
+    
+    border: 2px solid red;
+    position: relative;
+}
+
 .crawler button:hover {
     background-color: #3e8e41;
     -webkit-transition: background-color 1000ms linear;
@@ -146,3 +153,55 @@ td input{
     margin-left: 0;
 }
 
+.dataFormNEW form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.add_to_db_confirmation {
+    text-align: center;
+}
+
+.dataFormNEW form div {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+@media screen and (max-width: 764px) {
+    .top-buttons {
+        flex-direction: column;
+        width: 50%;
+    }
+
+    .bottom-buttons {
+        width: 50%;
+        margin-top: 0;
+    }
+
+    .dataFormNEW form {
+        flex-direction: column;
+    }
+
+    .dataFormNEW form input {
+        width: 100%;
+    }
+
+    .admin-dashboard h1, .admin-dashboard h2 {
+        text-align: center;
+    }
+
+
+}
+
+@media screen and (max-width: 430px) {
+    .top-buttons {
+        width: 80%;
+    }
+
+    .bottom-buttons {
+        width: 80%;
+    }
+}

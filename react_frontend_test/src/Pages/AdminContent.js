@@ -425,8 +425,9 @@ class AdminContent extends Component {
             <button className="post-button" type="submit">
               Add to database
             </button>
-            <p id="added"></p>
+            
           </form>
+          <p id="added" className="add_to_db_confirmation"></p>
           <div className="crawler-operations">
 
             <div className="top-buttons">
