@@ -95,7 +95,6 @@ td input{
 
 
 .crawler-operations {
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,7 +106,6 @@ td input{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    border: 2px solid green;
 }
 
 
@@ -117,7 +115,6 @@ td input{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border: 2px solid green;
 }
 
 .crawler button {
@@ -135,8 +132,6 @@ td input{
 
 #crawler-stats {
     width: 100%;
-    
-    border: 2px solid red;
     position: relative;
 }
 
@@ -159,6 +154,13 @@ td input{
     justify-content: center;
     flex-direction: row;
 }
+
+#get-properties table {
+    
+    border: 2px solid blue;
+}
+
+
 
 .add_to_db_confirmation {
     text-align: center;

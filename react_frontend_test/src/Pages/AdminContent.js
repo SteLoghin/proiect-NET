@@ -253,9 +253,9 @@ class AdminContent extends Component {
           editBtn.addEventListener("click", () => {
             this.updateProperty(property[keys[0]]);
           });
-          editBtn.appendChild(document.createTextNode("editama"));
+          editBtn.appendChild(document.createTextNode("edite me"));
           // console.log(property[keys[0]]);
-          deleteBtn.appendChild(document.createTextNode("deletema"));
+          deleteBtn.appendChild(document.createTextNode("delete me"));
           // TODO sa incerc sa fac edit btn
           tr.appendChild(deleteBtn);
           tr.appendChild(editBtn);
@@ -437,19 +437,19 @@ class AdminContent extends Component {
                 className="get-button-crawler"
                 onClick={this.displayCrawlerStats}
               >
-                Afiseaza statistici despre crawler
+                Show crawler statistics
               </button>
               <p id="crawler-stats"></p>
             </div>
             <div className="crawler">
               <button onClick={this.startCrawlerRequest}>
-                Baga o cheie la crawler
+                Start the crawler
               </button>
               <p id="crawler-start"></p>
             </div>
             <div className="crawler">
               <button onClick={this.renewTrainingDataRequest}>
-                Innoieste datele de antrenament
+                Renew training data
               </button>
               <p id="renew-training-data"></p>
             </div>
@@ -460,13 +460,13 @@ class AdminContent extends Component {
 
             <div className="crawler">
               <button onClick={this.retrainModel}>
-                Reantreneaza modelul pentru predictie
+                Retrain prediction model
               </button>
               <p id="retrain-model-stats"></p>
             </div>
             <div id="get-properties" className="crawler">
               <button onClick={this.fetchProperties} className="fetch-button">
-                Vizualizeaza toate proprietatile
+                Show all properties stored
               </button>
             </div>
 
