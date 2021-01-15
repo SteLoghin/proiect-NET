@@ -26,6 +26,10 @@ class AdminContent extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  componentDidMount = () => {
+    this.displayCrawlerStats();
+  }
+
   successfullyAdded = () => {
     const addded = document.getElementById("info");
     addded.textContent =
@@ -39,19 +43,17 @@ class AdminContent extends Component {
     axios
       .get("http://localhost:5000/api/v1/admin/crawling-stats")
       .then((response) => {
-        // console.log(response);
         showStats.textContent = "";
-        // TODO posibil, in caz ca o sa mai faca crawl pe alte site-uri, voi modifica aici cu o functie ca sa nu para ca e "hardcodat" titirez din json
-        console.log(response.data)
         const data = JSON.parse(JSON.stringify(response.data.titrez));
-        // console.log("data=", data);
+        const data1 = JSON.parse(JSON.stringify(response.data.imobiliare));
         const numberOfNewProperties = data.length;
         const totalCrawlTime = JSON.stringify(data.total_crawl_time).split(
           "."
         )[0];
         const crawlDate = data.last_crawl_datetime.split(" ");
         const lastCrawlHour = crawlDate[1].split(".")[0];
-        showStats.textContent = `Ultimul crawl pe site-ul titirez.ro a durat ${totalCrawlTime} secunde, a avut loc in data de ${crawlDate[0]} la ora ${lastCrawlHour} si au fost adaugate ${numberOfNewProperties} proprietati noi in baza de date.`;
+        showStats.innerHTML = `titirez.ro <br> Crawl-time ${totalCrawlTime} secunde <br> Data ${crawlDate[0]} ora ${lastCrawlHour} <br> Nr. prop. adaugate: ${numberOfNewProperties} <br>
+        Imobiliare.ro <br> Crawl-time ${JSON.stringify(data1.total_crawl_time).split(".")[0]} secunde <br> Data ${data1.last_crawl_datetime.split(" ")[0]} ora <br> ${data1.last_crawl_datetime.split(" ")[1]} Nr. prop. adaugate: ${data1.length} <br>`;
       })
       .catch((error) => {
         console.log(error);
@@ -61,7 +63,6 @@ class AdminContent extends Component {
   startCrawlerRequest = () => {
     const crawlerStart = document.getElementById("info");
     crawlerStart.textContent = "Asteptam raspunsul de la server...";
-    console.log("start crawler");
     axios
       .post("http://localhost:5000/api/v1/admin/start-crawler")
       .then((response) => {
