@@ -23,7 +23,6 @@ class PostForm extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-    console.log("Trimitem catre server: ",this.state);
     axios
       .get("http://localhost:5000/api/v1/predictions", {
         params: {
@@ -144,7 +143,7 @@ class PostForm extends Component {
             <div className="dataForm">
               <form onSubmit={this.submitHandler}>
                 <h2>Where do you want to live in Iasi?</h2>
-                <h3>We will show you how much $</h3>
+                <h3>We will show you how much it costs</h3>
                 <div>
                   <label>
                     Rooms

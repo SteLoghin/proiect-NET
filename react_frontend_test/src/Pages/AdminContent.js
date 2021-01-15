@@ -37,7 +37,6 @@ class AdminContent extends Component {
   };
 
   displayCrawlerStats = () => {
-    // console.log("cevaaa");
     const showStats = document.getElementById("info");
     showStats.textContent = "Asteptam raspunsul de la server...";
     axios
@@ -89,6 +88,7 @@ class AdminContent extends Component {
 
   retrainModel = () => {
     const text = document.getElementById("info");
+    text.textContent = "Loading...";
     const admin = "admin";
     axios
       .post(
@@ -98,7 +98,6 @@ class AdminContent extends Component {
       )
       .then((response) => {
         let { data } = response;
-        console.log(data.includes("*"));
         data = data.replaceAll("*", "").replaceAll("-", "");
         text.textContent = `Statistici despre reantrenarea modelului: ${data}`;
       })
@@ -108,12 +107,10 @@ class AdminContent extends Component {
   };
 
   deleteProperty = (propertyId) => {
-    console.log(`proprietatea cu id-ul: ${propertyId} va fi stearsa din bd`);
     const url = "http://localhost:5000/api/v1/properties/" + propertyId;
     axios
       .delete(url)
       .then((response) => {
-        console.log("sters" + propertyId);
         const deleteRow = document.getElementById(propertyId);
         deleteRow.remove();
       })
@@ -126,21 +123,15 @@ class AdminContent extends Component {
     if (this.state.id[propertyId] === true) {
       return;
     }
-    console.log("intru in updateProperty nu in a doua functie");
-    console.log(`proprietatea cu id-ul: ${propertyId}`);
     const propertyAttributes = document.getElementById(propertyId).children;
     let attributesName = document.getElementById("table-head").firstChild
       .children;
 
     const propertyToUpdate = {};
-    // const rowValues=[];
+
     for (let i = 0; i < attributesName.length; i++) {
       propertyToUpdate[attributesName[i].textContent] =
         propertyAttributes[i].textContent;
-      // console.log("############", propertyAttributes[i].innerHTML);
-      // e numar adica
-      // console.log(`1:${propertyAttributes[i].textContent}`);
-      // rowValues.push(propertyAttributes[i].textContent);
       if (attributesName[i].textContent === "zone") {
         const zona = `"${propertyAttributes[i].textContent}"`;
         const inner = `<input type='text' value=${zona} name=${zona}>`;
@@ -149,8 +140,6 @@ class AdminContent extends Component {
         continue;
       }
       if (!isNaN(propertyAttributes[i].textContent)) {
-        // console.log("INTRU VREODATA AICI???");
-        // nu cred ca am nevoie de onchange pentru ca aici creez obiectul si il dau asa prin post
         const inner = `<input type='number' value=${propertyAttributes[i].textContent} name=${propertyAttributes[i].textContent}>`;
         propertyAttributes[i].innerHTML = "";
         propertyAttributes[i].innerHTML = inner;
@@ -160,34 +149,25 @@ class AdminContent extends Component {
         propertyAttributes[i].innerHTML = inner;
       }
     }
-    // console.log(`atributele sunt:${attributes}`);
-    // console.log(propertyToUpdate);
 
     const editBtn = document.getElementById("editBtn-" + propertyId);
 
-    // id=id.split("-")[1]
-    // editBtn.removeEventListener("click",this.updateProperty);
-    // this.state.id[propertyId]="true";
     this.setState((prevState) => {
       let id = Object.assign({}, prevState.id);
       id[propertyId] = true;
       return { id };
     });
-    console.log("::::::::::::::::::::::", this.state.id);
     editBtn.addEventListener("click", () => {
       this.putRequest("editBtn-" + propertyId);
     });
-    // console.log(`row-values:${rowValues}`)
     editBtn.textContent = "Update";
   };
 
   putRequest = (btnID) => {
     let propertyID = btnID.split("-")[1];
     const updatedRow = document.getElementById(propertyID).children;
-    console.log(propertyID);
+
     const propertyToUpdate = {};
-    console.log("row:", updatedRow);
-    console.log("444------", updatedRow[0].firstChild.value);
     // const propertyAttributes = document.getElementById(propertyId).children;
     let attributesName = document.getElementById("table-head").firstChild
       .children;
@@ -196,12 +176,10 @@ class AdminContent extends Component {
       propertyToUpdate[attributesName[i].textContent] =
         updatedRow[i].firstChild.value;
     }
-    console.log(propertyToUpdate);
     const url = "http://localhost:5000/api/v1/properties/"+propertyID;
     axios
       .put(url, propertyToUpdate)
       .then((response) => {
-        console.log("modified");
       })
       .catch((err) => {
         console.log(err);
@@ -215,15 +193,14 @@ class AdminContent extends Component {
       .get("http://localhost:5000/api/properties")
       .then((response) => {
         const propertiesList = response.data;
-        // console.log(propertiesList);
-        //const tableParent = document.getElementById("get-properties");
+
         const propertiesTable = document.getElementById("properties-table");
         //tableParent.appendChild(propertiesTable);
         const tableHead = document.createElement("thead");
         tableHead.setAttribute("id", "table-head");
         const firstRow = document.createElement("tr");
         let keys = Object.keys(propertiesList[0]);
-        // console.log(keys);
+
         for (let i = 0; i < keys.length; i++) {
           const atribut = document.createElement("th");
           atribut.appendChild(document.createTextNode(keys[i]));
@@ -244,12 +221,10 @@ class AdminContent extends Component {
 
           for (let i = 0; i < keys.length; i++) {
             const atribut = document.createElement("td");
-            // console.log("----------------", property[keys[i]]);
             atribut.appendChild(document.createTextNode(property[keys[i]]));
             tr.appendChild(atribut);
           }
           const deleteBtn = document.createElement("Button");
-          // deleteBtn.setAttribute("id","btn"+property[keys[0]])
           deleteBtn.addEventListener("click", () =>
             this.deleteProperty(property[keys[0]])
           );
@@ -260,9 +235,7 @@ class AdminContent extends Component {
           });
           
           editBtn.appendChild(document.createTextNode("Edit"));
-          // console.log(property[keys[0]]);
           deleteBtn.appendChild(document.createTextNode("Delete"));
-          // TODO sa incerc sa fac edit btn
           tr.appendChild(deleteBtn);
           tr.appendChild(editBtn);
           propertiesTable.appendChild(tr);
@@ -277,7 +250,6 @@ class AdminContent extends Component {
   submitHandler = (e) => {
     e.preventDefault();
 
-    // console.log(this.state);
     axios
       .post("http://localhost:5000/api/v1/properties", this.state)
       .then(this.successfullyAdded());
