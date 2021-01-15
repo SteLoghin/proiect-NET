@@ -43,3 +43,19 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+
+@media screen and (max-width: 450px) {
+    .main-navigation__item ul li a{
+        margin-right: 0;
+        
+    }
+
+    .main-navigation__item ul li {
+        margin-top: 0.5em;
+    }
+
+    .main-navigation__logo h1 {
+        font-size: 30px;
+        margin-top: 0.5em;
+    }
+}
